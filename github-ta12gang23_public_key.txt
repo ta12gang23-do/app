@@ -1,1 +1,0 @@
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHjyRTrdWPBrdJ8TYzouglW+v9whV29hugvIa2DggVTy ta12gang23-do@github
