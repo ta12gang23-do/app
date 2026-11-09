@@ -3,29 +3,27 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<meta name="theme-color" content="#0d1410" />
-<title>METAL SLUG: REBEL COMBAT — 2-Player Co-op Arcade</title>
+<meta name="theme-color" content="#0a0e10" />
+<title>IRON RECON: CO-OP RUN &amp; GUN — 2-Player Tactical Shooter</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Rubik:wght@500;700;800;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,600;0,700;0,800;1,700&family=Rajdhani:wght@600;700;800&family=Rubik:wght@500;700;800&display=swap" rel="stylesheet" />
 <style>
   :root {
     color-scheme: dark;
-    --bg: #090e0c;
-    --panel: rgba(14, 22, 18, 0.96);
-    --line: rgba(255, 255, 255, 0.14);
-    --gold: #ffd166;
-    --orange: #ff7714;
-    --fire: #ff4800;
-    --red: #ff3b30;
-    --p1-blue: #3291ff;
-    --p2-red: #ff4d4f;
-    --pow-gold: #ffbe3b;
-    --green: #52c41a;
-    --ink: #f0f8f2;
-    --muted: #95a89e;
-    --font: "Rubik", ui-sans-serif, system-ui, sans-serif;
-    --display: "Bungee", Impact, "Arial Black", sans-serif;
+    --bg: #070a0c;
+    --panel-bg: rgba(12, 17, 21, 0.96);
+    --border: rgba(255, 255, 255, 0.14);
+    --gold: #ffbe3b;
+    --amber: #ff9100;
+    --red: #ff3333;
+    --p1-color: #38a2ff;
+    --p2-color: #ff5252;
+    --green: #48d660;
+    --ink: #e6edf2;
+    --muted: #8b9da8;
+    --font-ui: "Rajdhani", system-ui, sans-serif;
+    --font-heading: "Chakra Petch", Impact, sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   [hidden] { display: none !important; }
@@ -34,7 +32,7 @@
     min-height: 100%;
     background: var(--bg);
     color: var(--ink);
-    font-family: var(--font);
+    font-family: var(--font-ui);
     overflow-x: hidden;
     user-select: none;
     -webkit-user-select: none;
@@ -45,20 +43,20 @@
     align-items: center;
     justify-content: center;
     min-height: 100dvh;
-    padding: 10px;
+    padding: 8px;
     background:
-      radial-gradient(1200px 700px at 50% -10%, rgba(255, 119, 20, 0.16), transparent 70%),
-      radial-gradient(1000px 600px at 50% 110%, rgba(50, 145, 255, 0.12), transparent 70%),
-      repeating-linear-gradient(135deg, rgba(255,255,255,0.015) 0 2px, transparent 2px 14px),
-      #090e0c;
+      radial-gradient(1200px 700px at 50% -10%, rgba(255, 145, 0, 0.12), transparent 70%),
+      radial-gradient(1000px 600px at 50% 110%, rgba(56, 162, 255, 0.09), transparent 70%),
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.012) 0 2px, transparent 2px 16px),
+      #070a0c;
   }
 
-  .game-container {
-    --stage-w: min(98vw, 1120px, calc((100dvh - 170px) * 16 / 9));
+  .game-wrapper {
+    --stage-w: min(98vw, 1140px, calc((100dvh - 165px) * 16 / 9));
     width: var(--stage-w);
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 7px;
     position: relative;
   }
 
@@ -68,36 +66,40 @@
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    padding: 4px 6px;
-    background: rgba(18, 27, 22, 0.85);
-    border: 1px solid var(--line);
+    padding: 6px 12px;
+    background: rgba(14, 19, 24, 0.9);
+    border: 1px solid var(--border);
     border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
   }
   .brand {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
   .brand-logo {
     display: flex;
     flex-direction: column;
-    line-height: 0.95;
+    line-height: 1;
   }
   .logo-title {
-    font-family: var(--display);
-    font-size: clamp(14px, 2vw, 20px);
-    letter-spacing: 0.05em;
-    background: linear-gradient(180deg, #fff3c4 0%, #ffc038 45%, #ff5e00 100%);
+    font-family: var(--font-heading);
+    font-size: clamp(15px, 2.1vw, 22px);
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: 0.08em;
+    background: linear-gradient(180deg, #ffffff 0%, #ffe399 45%, #ff8c00 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 4px rgba(255, 94, 0, 0.5));
+    filter: drop-shadow(0 2px 6px rgba(255, 140, 0, 0.5));
   }
   .logo-sub {
-    font-size: 8.5px;
-    font-weight: 800;
-    letter-spacing: 0.22em;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
     color: var(--muted);
     text-transform: uppercase;
+    margin-top: 2px;
   }
   .top-stats {
     display: flex;
@@ -106,27 +108,27 @@
     margin-left: auto;
   }
   .badge {
-    padding: 4px 9px;
-    border-radius: 999px;
-    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
     font-weight: 800;
     letter-spacing: 0.1em;
-    background: rgba(255, 209, 102, 0.12);
-    border: 1px solid rgba(255, 209, 102, 0.35);
+    background: rgba(255, 190, 59, 0.12);
+    border: 1px solid rgba(255, 190, 59, 0.35);
     color: var(--gold);
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
     white-space: nowrap;
   }
-  .pow-stat {
-    background: rgba(255, 190, 59, 0.15);
-    border-color: rgba(255, 190, 59, 0.45);
-    color: var(--pow-gold);
+  .badge-pow {
+    background: rgba(72, 214, 96, 0.12);
+    border-color: rgba(72, 214, 96, 0.35);
+    color: var(--green);
   }
   .top-btn {
     background: rgba(255,255,255,0.07);
-    border: 1px solid var(--line);
+    border: 1px solid var(--border);
     color: var(--ink);
     border-radius: 8px;
     width: 32px;
@@ -137,7 +139,7 @@
     cursor: pointer;
     transition: all 0.15s ease;
   }
-  .top-btn:hover { background: rgba(255,255,255,0.15); }
+  .top-btn:hover { background: rgba(255,255,255,0.16); }
 
   /* ---------- Player HUD Cards ---------- */
   .hud {
@@ -148,39 +150,40 @@
   .player-card {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 6px 12px;
-    background: rgba(14, 22, 18, 0.92);
-    border: 1px solid var(--line);
+    gap: 10px;
+    padding: 6px 14px;
+    background: rgba(13, 18, 23, 0.92);
+    border: 1px solid var(--border);
     border-radius: 12px;
-    border-left: 5px solid var(--p1-blue);
+    border-left: 5px solid var(--p1-color);
     position: relative;
     overflow: hidden;
   }
   .player-card.p2 {
-    border-left-color: var(--p2-red);
+    border-left-color: var(--p2-color);
   }
   .player-card.dead {
-    opacity: 0.45;
+    opacity: 0.35;
   }
   .avatar-box {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.15);
     display: grid;
     place-items: center;
-    font-family: var(--display);
+    font-family: var(--font-heading);
     font-size: 12px;
-    color: var(--p1-blue);
+    font-weight: 800;
+    color: var(--p1-color);
     flex-shrink: 0;
   }
-  .player-card.p2 .avatar-box { color: var(--p2-red); }
+  .player-card.p2 .avatar-box { color: var(--p2-color); }
   .p-info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 1px;
     min-width: 0;
   }
   .p-name-row {
@@ -189,12 +192,13 @@
     gap: 6px;
   }
   .p-name {
-    font-family: var(--display);
-    font-size: 11px;
-    letter-spacing: 0.05em;
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
   }
   .p-score {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 800;
     color: var(--gold);
     font-family: monospace;
@@ -202,56 +206,51 @@
   .p-status {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 11px;
+    gap: 9px;
+    font-size: 12px;
     font-weight: 800;
   }
   .hearts {
-    color: #ff4d4f;
-    letter-spacing: 1px;
+    color: #ff4040;
+    letter-spacing: 2px;
   }
   .weapon-chip {
     margin-left: auto;
     display: flex;
     align-items: center;
-    gap: 5px;
-    padding: 3px 8px;
-    background: rgba(255, 209, 102, 0.12);
-    border: 1px solid rgba(255, 209, 102, 0.3);
+    gap: 6px;
+    padding: 4px 10px;
+    background: rgba(255, 190, 59, 0.12);
+    border: 1px solid rgba(255, 190, 59, 0.3);
     border-radius: 6px;
     font-family: monospace;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 800;
     color: var(--gold);
     white-space: nowrap;
   }
-  .slug-active {
-    background: rgba(82, 196, 26, 0.2);
-    border-color: rgba(82, 196, 26, 0.5);
-    color: #73d13d;
-  }
 
-  /* ---------- Canvas & Stage ---------- */
+  /* ---------- Canvas Stage ---------- */
   .stage-box {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
     border-radius: 16px;
     overflow: hidden;
-    background: #000;
+    background: #020304;
     border: 2px solid rgba(255, 255, 255, 0.16);
     box-shadow:
-      0 20px 50px -10px rgba(0, 0, 0, 0.9),
+      0 24px 60px rgba(0, 0, 0, 0.95),
       0 0 0 1px rgba(0, 0, 0, 0.8),
-      inset 0 0 30px rgba(0,0,0,0.4);
+      inset 0 0 40px rgba(0,0,0,0.5);
   }
   canvas#game {
     display: block;
     width: 100%;
     height: 100%;
-    image-rendering: pixelated;
+    image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
-    background: #4a88b0;
+    background: #000;
   }
 
   /* CRT Scanlines Filter Overlay */
@@ -260,11 +259,10 @@
     inset: 0;
     pointer-events: none;
     background:
-      repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.12) 0px, rgba(0, 0, 0, 0.12) 1px, transparent 1px, transparent 3px),
-      radial-gradient(circle at center, transparent 65%, rgba(0, 0, 0, 0.45) 100%);
-    opacity: 0.7;
+      repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15) 0px, rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 3px),
+      radial-gradient(circle at center, transparent 70%, rgba(0, 0, 0, 0.5) 100%);
+    opacity: 0.75;
     mix-blend-mode: multiply;
-    transition: opacity 0.2s ease;
   }
   .scanlines.off { display: none; }
 
@@ -277,9 +275,9 @@
     align-items: center;
     justify-content: center;
     padding: clamp(10px, 3vw, 24px);
-    background: rgba(6, 12, 9, 0.65);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: rgba(4, 7, 10, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -292,15 +290,15 @@
   }
 
   .panel {
-    width: min(100%, 720px);
-    max-height: 95%;
+    width: min(100%, 740px);
+    max-height: 96%;
     overflow-y: auto;
     scrollbar-width: none;
     padding: clamp(16px, 3vw, 28px);
-    background: linear-gradient(165deg, rgba(22, 34, 27, 0.98), rgba(10, 16, 12, 0.98));
-    border: 1px solid rgba(255, 209, 102, 0.3);
+    background: linear-gradient(165deg, rgba(16, 23, 29, 0.98), rgba(9, 13, 17, 0.98));
+    border: 1px solid rgba(255, 190, 59, 0.35);
     border-radius: 20px;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.15);
     position: relative;
     text-align: center;
   }
@@ -311,48 +309,51 @@
     inset: 0 0 auto;
     height: 4px;
     border-radius: 20px 20px 0 0;
-    background: linear-gradient(90deg, var(--orange), var(--gold), var(--orange));
+    background: linear-gradient(90deg, var(--amber), var(--gold), var(--amber));
   }
 
   .eyebrow {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 800;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 4px;
   }
   .game-title {
-    font-family: var(--display);
-    font-size: clamp(24px, 5.2vw, 42px);
+    font-family: var(--font-heading);
+    font-size: clamp(26px, 5.5vw, 44px);
+    font-weight: 800;
+    font-style: italic;
     line-height: 1.05;
-    background: linear-gradient(180deg, #ffffff 0%, #ffe699 30%, #ff8c00 70%, #d83b00 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #ffe399 35%, #ff9100 75%, #cc3300 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 4px 10px rgba(255, 110, 0, 0.4));
+    filter: drop-shadow(0 4px 12px rgba(255, 145, 0, 0.45));
     margin-bottom: 8px;
   }
   .tagline {
-    font-size: clamp(11px, 1.4vw, 13px);
+    font-size: clamp(12px, 1.4vw, 14px);
     color: var(--muted);
-    max-width: 540px;
+    max-width: 580px;
     margin: 0 auto 16px;
     line-height: 1.45;
   }
 
-  /* Mode Select Buttons */
+  /* Mode Buttons */
   .mode-row {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     justify-content: center;
     margin-bottom: 16px;
     flex-wrap: wrap;
   }
   .btn {
-    font-family: var(--display);
-    font-size: 13px;
-    letter-spacing: 0.05em;
-    padding: 12px 22px;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 12px 24px;
     border-radius: 12px;
     border: none;
     cursor: pointer;
@@ -361,55 +362,57 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+    text-transform: uppercase;
   }
   .btn.primary {
-    background: linear-gradient(180deg, #ff9436 0%, #ff5e00 100%);
+    background: linear-gradient(180deg, #ff9b26 0%, #ff6200 100%);
     color: #fff;
-    box-shadow: 0 6px 18px rgba(255, 94, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    box-shadow: 0 6px 20px rgba(255, 98, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
   .btn.primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(255, 94, 0, 0.6);
+    box-shadow: 0 8px 26px rgba(255, 98, 0, 0.65);
   }
   .btn.secondary {
     background: rgba(255, 255, 255, 0.08);
-    border: 1px solid var(--line);
+    border: 1px solid var(--border);
     color: var(--ink);
   }
   .btn.secondary:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.16);
     transform: translateY(-2px);
   }
 
-  /* Stage Select Chips */
+  /* Stage Select */
   .stage-select-box {
     margin: 12px 0 18px;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.3);
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.35);
     border-radius: 14px;
-    border: 1px solid var(--line);
+    border: 1px solid var(--border);
   }
   .stage-select-label {
-    font-size: 9.5px;
+    font-size: 10px;
     font-weight: 800;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 8px;
+    margin-bottom: 9px;
   }
   .stages-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
+    gap: 8px;
   }
   .stage-opt-btn {
-    padding: 8px 4px;
+    padding: 9px 5px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.12);
     color: var(--muted);
-    font-family: var(--display);
-    font-size: 10px;
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.15s ease;
     display: flex;
@@ -418,13 +421,13 @@
     gap: 3px;
   }
   .stage-opt-btn span {
-    font-size: 8px;
-    font-family: var(--font);
+    font-size: 9px;
+    font-family: var(--font-ui);
     font-weight: 700;
-    color: #7b9485;
+    color: #7d93a3;
   }
   .stage-opt-btn.active, .stage-opt-btn:hover {
-    background: rgba(255, 209, 102, 0.16);
+    background: rgba(255, 190, 59, 0.18);
     border-color: var(--gold);
     color: var(--gold);
     transform: translateY(-1px);
@@ -440,90 +443,90 @@
     margin-bottom: 14px;
   }
   .control-card {
-    padding: 10px 14px;
+    padding: 12px 14px;
     background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--line);
+    border: 1px solid var(--border);
     border-radius: 12px;
   }
   .control-head {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-family: var(--display);
-    font-size: 11px;
-    color: var(--p1-blue);
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--p1-color);
     margin-bottom: 8px;
     padding-bottom: 4px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
-  .control-card.p2 .control-head { color: var(--p2-red); }
+  .control-card.p2 .control-head { color: var(--p2-color); }
   .control-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 10.5px;
+    font-size: 11.5px;
     color: var(--muted);
     margin-bottom: 4px;
   }
   kbd {
-    padding: 2px 6px;
+    padding: 2px 7px;
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.22);
     font-family: monospace;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     color: #fff;
   }
 
-  /* Result / Tally Screen */
+  /* Result Screen */
   .tally-score {
-    font-family: var(--display);
-    font-size: clamp(34px, 6vw, 52px);
+    font-family: var(--font-heading);
+    font-size: clamp(36px, 6.5vw, 56px);
+    font-weight: 800;
     color: var(--gold);
-    text-shadow: 0 4px 12px rgba(255, 209, 102, 0.4);
-    margin: 8px 0 12px;
+    text-shadow: 0 4px 14px rgba(255, 190, 59, 0.45);
+    margin: 8px 0 14px;
   }
   .tally-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-bottom: 18px;
+    gap: 10px;
+    margin-bottom: 20px;
   }
   .tally-cell {
-    padding: 8px;
+    padding: 10px 8px;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--line);
+    border: 1px solid var(--border);
     border-radius: 10px;
   }
   .tally-cell span {
     display: block;
-    font-size: 8.5px;
+    font-size: 9px;
     font-weight: 800;
     letter-spacing: 0.15em;
     color: var(--muted);
   }
   .tally-cell strong {
-    font-family: var(--display);
-    font-size: 16px;
+    font-family: var(--font-heading);
+    font-size: 18px;
     color: #fff;
     margin-top: 2px;
     display: block;
   }
 
-  /* ---------- Mobile Touch Controls ---------- */
+  /* ---------- Touch Controls ---------- */
   .touch-controls {
     display: none;
     position: absolute;
-    inset: auto 10px 10px 10px;
+    inset: auto 12px 12px 12px;
     z-index: 15;
     pointer-events: none;
     justify-content: space-between;
     align-items: flex-end;
   }
-  .touch-controls.active {
-    display: flex;
-  }
+  .touch-controls.active { display: flex; }
   .dpad-cluster, .action-cluster {
     pointer-events: auto;
     display: grid;
@@ -533,22 +536,22 @@
     grid-template-areas:
       ".    up    ."
       "left down  right";
-    grid-template-columns: 46px 46px 46px;
-    grid-template-rows: 46px 46px;
+    grid-template-columns: 48px 48px 48px;
+    grid-template-rows: 48px 48px;
   }
   .dpad-btn {
-    background: rgba(255, 255, 255, 0.16);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.18);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-radius: 12px;
     color: #fff;
-    font-size: 18px;
+    font-size: 19px;
     font-weight: bold;
     display: grid;
     place-items: center;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(6px);
     touch-action: none;
   }
-  .dpad-btn:active { background: rgba(255, 209, 102, 0.45); }
+  .dpad-btn:active { background: rgba(255, 190, 59, 0.5); }
   .dpad-up { grid-area: up; }
   .dpad-down { grid-area: down; }
   .dpad-left { grid-area: left; }
@@ -560,33 +563,34 @@
     align-items: flex-end;
   }
   .touch-act-btn {
-    width: 52px;
-    height: 52px;
+    width: 54px;
+    height: 54px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.18);
     border: 2px solid rgba(255, 255, 255, 0.35);
     color: #fff;
-    font-family: var(--display);
-    font-size: 11px;
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 700;
     display: grid;
     place-items: center;
     touch-action: none;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   }
   .touch-act-btn:active { transform: scale(0.92); }
-  .touch-fire { background: rgba(255, 94, 0, 0.4); border-color: #ff9436; }
-  .touch-jump { background: rgba(50, 145, 255, 0.4); border-color: #70b4ff; }
-  .touch-bomb { background: rgba(255, 209, 102, 0.4); border-color: #ffd166; width: 44px; height: 44px; font-size: 9px; }
+  .touch-fire { background: rgba(255, 98, 0, 0.45); border-color: #ff9b26; }
+  .touch-jump { background: rgba(56, 162, 255, 0.45); border-color: #82c4ff; }
+  .touch-bomb { background: rgba(255, 190, 59, 0.45); border-color: #ffd27a; width: 46px; height: 46px; font-size: 10px; }
 
-  /* ---------- Footer Info ---------- */
+  /* ---------- Footer Hints ---------- */
   .footer-hints {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 14px;
-    font-size: 10px;
-    color: #728c7e;
+    gap: 16px;
+    font-size: 11px;
+    color: #6a7f8c;
     font-weight: 600;
     flex-wrap: wrap;
     padding: 0 4px;
@@ -601,20 +605,20 @@
 </head>
 <body>
 
-<div class="game-container">
+<div class="game-wrapper">
   <!-- Top Bar -->
   <header class="topbar">
     <div class="brand">
       <div class="brand-logo">
-        <div class="logo-title">METAL SLUG</div>
-        <div class="logo-sub">REBEL COMBAT &middot; 2P CO-OP</div>
+        <div class="logo-title">IRON RECON</div>
+        <div class="logo-sub">TACTICAL CO-OP RUN &amp; GUN</div>
       </div>
     </div>
     <div class="top-stats">
-      <div class="badge" id="stageBadge">MISSION 1</div>
-      <div class="badge pow-stat" id="powBadge">&#9733; POW: 0</div>
-      <div class="badge" id="hiScoreBadge">HI: 0</div>
-      <button class="top-btn" id="scanlineBtn" title="Toggle CRT scanlines" type="button">&#128421;</button>
+      <div class="badge" id="stageBadge">OPERATION 1</div>
+      <div class="badge badge-pow" id="powBadge">&#9733; HOSTAGES: 0</div>
+      <div class="badge" id="hiScoreBadge">RECORD: 0</div>
+      <button class="top-btn" id="scanlineBtn" title="Toggle CRT Filter" type="button">&#128421;</button>
       <button class="top-btn" id="muteBtn" title="Toggle Sound (M)" type="button">&#128266;</button>
       <button class="top-btn" id="touchToggleBtn" title="Toggle Touch Buttons" type="button">&#128241;</button>
     </div>
@@ -622,38 +626,38 @@
 
   <!-- Player HUD -->
   <div class="hud">
-    <!-- P1 MARCO -->
+    <!-- P1 SGT. STONE -->
     <div class="player-card" id="p1Card">
-      <div class="avatar-box">1P</div>
+      <div class="avatar-box">P1</div>
       <div class="p-info">
         <div class="p-name-row">
-          <span class="p-name" style="color: var(--p1-blue)">MARCO</span>
+          <span class="p-name" style="color: var(--p1-color)">SGT. STONE</span>
           <span class="p-score" id="p1Score">00000</span>
         </div>
         <div class="p-status">
           <span class="hearts" id="p1Hearts">&#9829;&#9829;&#9829;</span>
           <span id="p1Lives">&times;3</span>
-          <span style="color: var(--gold)" id="p1Bombs">B&times;10</span>
+          <span style="color: var(--gold)" id="p1Bombs">M67 &times;10</span>
         </div>
       </div>
-      <div class="weapon-chip" id="p1Weapon">PISTOL &infin;</div>
+      <div class="weapon-chip" id="p1Weapon">M4A1 CARBINE &infin;</div>
     </div>
 
-    <!-- P2 TARMA -->
+    <!-- P2 CPT. VANCE -->
     <div class="player-card p2" id="p2Card">
-      <div class="avatar-box">2P</div>
+      <div class="avatar-box">P2</div>
       <div class="p-info">
         <div class="p-name-row">
-          <span class="p-name" style="color: var(--p2-red)">TARMA</span>
+          <span class="p-name" style="color: var(--p2-color)">CPT. VANCE</span>
           <span class="p-score" id="p2Score">00000</span>
         </div>
         <div class="p-status">
           <span class="hearts" id="p2Hearts">&#9829;&#9829;&#9829;</span>
           <span id="p2Lives">&times;3</span>
-          <span style="color: var(--gold)" id="p2Bombs">B&times;10</span>
+          <span style="color: var(--gold)" id="p2Bombs">M67 &times;10</span>
         </div>
       </div>
-      <div class="weapon-chip" id="p2Weapon">PISTOL &infin;</div>
+      <div class="weapon-chip" id="p2Weapon">M4A1 CARBINE &infin;</div>
     </div>
   </div>
 
@@ -671,7 +675,7 @@
         <button class="dpad-btn dpad-right" data-key="right" type="button">&#9654;</button>
       </div>
       <div class="action-cluster">
-        <button class="touch-act-btn touch-bomb" data-key="bomb" type="button">BOMB</button>
+        <button class="touch-act-btn touch-bomb" data-key="bomb" type="button">FRAG</button>
         <button class="touch-act-btn touch-jump" data-key="jump" type="button">JUMP</button>
         <button class="touch-act-btn touch-fire" data-key="fire" type="button">FIRE</button>
       </div>
@@ -680,9 +684,9 @@
     <!-- START MENU OVERLAY -->
     <div class="overlay show" id="startOverlay">
       <div class="panel">
-        <div class="eyebrow">Neo-Geo Arcade Tribute &middot; 4 Epic Stages</div>
-        <h1 class="game-title">METAL SLUG<br /><span style="font-size: 0.6em; letter-spacing: 0.1em; color: var(--gold)">REBEL COMBAT</span></h1>
-        <p class="tagline">Squad up with Marco &amp; Tarma! Blast through enemy battalions, rescue bearded POWs, mount the SV-001 Metal Slug Tank, and crush the Rebel war machines.</p>
+        <div class="eyebrow">Tactical Military Run &amp; Gun &middot; Realistic Combatants</div>
+        <h1 class="game-title">IRON RECON<br /><span style="font-size: 0.58em; letter-spacing: 0.12em; color: var(--gold)">CO-OP SQUAD WARFARE</span></h1>
+        <p class="tagline">Deploy as Special Forces Operators Sgt. Stone &amp; Cpt. Vance. Neutralize insurgent infantry, breach enemy fortifications, command the M2 Bradley Assault Tank, and rescue hostage personnel across 4 lethal combat zones.</p>
 
         <div class="mode-row">
           <button class="btn primary" id="btn2P" type="button">&#9654; 2 PLAYERS CO-OP</button>
@@ -691,36 +695,36 @@
 
         <!-- Stage Select -->
         <div class="stage-select-box">
-          <div class="stage-select-label">SELECT MISSION STAGE</div>
+          <div class="stage-select-label">SELECT COMBAT THEATER</div>
           <div class="stages-grid" id="stageGrid">
-            <button class="stage-opt-btn active" data-stage="0" type="button">MISSION 1<span>Jungle Canal</span></button>
-            <button class="stage-opt-btn" data-stage="1" type="button">MISSION 2<span>Desert Tomb (Slug)</span></button>
-            <button class="stage-opt-btn" data-stage="2" type="button">MISSION 3<span>Snow Fortress</span></button>
-            <button class="stage-opt-btn" data-stage="3" type="button">FINAL MISSION<span>Jupiter Core</span></button>
+            <button class="stage-opt-btn active" data-stage="0" type="button">OPERATION 1<span>Green Viper (Jungle)</span></button>
+            <button class="stage-opt-btn" data-stage="1" type="button">OPERATION 2<span>Sandstorm (Tank Combat)</span></button>
+            <button class="stage-opt-btn" data-stage="2" type="button">OPERATION 3<span>Frostbite (Siberia)</span></button>
+            <button class="stage-opt-btn" data-stage="3" type="button">OPERATION 4<span>Dark Core (Sub-Bunker)</span></button>
           </div>
         </div>
 
         <!-- Controls Reference -->
         <div class="controls-grid">
           <div class="control-card">
-            <div class="control-head">&#9654; 1P: MARCO ROSSI</div>
-            <div class="control-row"><span>Move / Aim Up / Crouch</span><span><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></span></div>
-            <div class="control-row"><span>Shoot / Knife Slash</span><span><kbd>J</kbd></span></div>
-            <div class="control-row"><span>Jump / Enter Slug</span><span><kbd>K</kbd> / <kbd>Space</kbd></span></div>
-            <div class="control-row"><span>Throw Bomb</span><span><kbd>L</kbd></span></div>
+            <div class="control-head">&#9654; 1P: SGT. STONE (Tactical Operator)</div>
+            <div class="control-row"><span>Tactical Sprint / Aim / Duck</span><span><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></span></div>
+            <div class="control-row"><span>Fire Weapon / KA-BAR Knife Slash</span><span><kbd>J</kbd></span></div>
+            <div class="control-row"><span>Combat Jump / Mount Tank</span><span><kbd>K</kbd> / <kbd>Space</kbd></span></div>
+            <div class="control-row"><span>M67 Frag Grenade</span><span><kbd>L</kbd></span></div>
           </div>
           <div class="control-card p2">
-            <div class="control-head">&#9654; 2P: TARMA ROVING</div>
-            <div class="control-row"><span>Move / Aim Up / Crouch</span><span><kbd>&uarr;</kbd> <kbd>&larr;</kbd> <kbd>&darr;</kbd> <kbd>&rarr;</kbd></span></div>
-            <div class="control-row"><span>Shoot / Knife Slash</span><span><kbd>/</kbd> or <kbd>Z</kbd></span></div>
-            <div class="control-row"><span>Jump / Enter Slug</span><span><kbd>Enter</kbd> or <kbd>X</kbd></span></div>
-            <div class="control-row"><span>Throw Bomb</span><span><kbd>.</kbd> or <kbd>C</kbd></span></div>
+            <div class="control-head">&#9654; 2P: CPT. VANCE (Spec-Ops Commando)</div>
+            <div class="control-row"><span>Tactical Sprint / Aim / Duck</span><span><kbd>&uarr;</kbd> <kbd>&larr;</kbd> <kbd>&darr;</kbd> <kbd>&rarr;</kbd></span></div>
+            <div class="control-row"><span>Fire Weapon / KA-BAR Knife Slash</span><span><kbd>/</kbd> or <kbd>Z</kbd></span></div>
+            <div class="control-row"><span>Combat Jump / Mount Tank</span><span><kbd>Enter</kbd> or <kbd>X</kbd></span></div>
+            <div class="control-row"><span>M67 Frag Grenade</span><span><kbd>.</kbd> or <kbd>C</kbd></span></div>
           </div>
         </div>
 
-        <div style="font-size: 11px; color: var(--muted); display: flex; justify-content: center; gap: 14px;">
-          <span>&#127918; 2 USB / Bluetooth Gamepads Supported</span>
-          <span>&#128241; Touch Screen D-pad Ready</span>
+        <div style="font-size: 11px; color: var(--muted); display: flex; justify-content: center; gap: 16px;">
+          <span>&#127918; Plug-and-Play Dual Gamepad Support</span>
+          <span>&#128241; Touchscreen Virtual Controls</span>
         </div>
       </div>
     </div>
@@ -728,45 +732,45 @@
     <!-- PAUSE OVERLAY -->
     <div class="overlay" id="pauseOverlay">
       <div class="panel" style="max-width: 440px;">
-        <div class="eyebrow">Tactical Pause</div>
-        <h2 style="font-family: var(--display); font-size: 32px; color: var(--gold); margin-bottom: 10px;">MISSION PAUSED</h2>
-        <p class="tagline">Regroup your squad.</p>
+        <div class="eyebrow">Tactical Intermission</div>
+        <h2 style="font-family: var(--font-heading); font-size: 32px; color: var(--gold); margin-bottom: 8px;">OPERATION PAUSED</h2>
+        <p class="tagline">Regroup squad and check ammo count.</p>
         <div style="display: flex; flex-direction: column; gap: 10px;">
-          <button class="btn primary" id="resumeBtn" type="button">RESUME MISSION</button>
-          <button class="btn secondary" id="restartBtn" type="button">RESTART MISSION</button>
-          <button class="btn secondary" id="menuBtn" type="button">ABORT TO MENU</button>
+          <button class="btn primary" id="resumeBtn" type="button">RESUME FIRE</button>
+          <button class="btn secondary" id="restartBtn" type="button">RESTART OPERATION</button>
+          <button class="btn secondary" id="menuBtn" type="button">ABORT TO BASE</button>
         </div>
       </div>
     </div>
 
-    <!-- STAGE CLEAR / TALLY OVERLAY -->
+    <!-- STAGE CLEAR OVERLAY -->
     <div class="overlay" id="clearOverlay">
-      <div class="panel" style="max-width: 540px;">
-        <div class="eyebrow" style="color: #73d13d;">Mission Objective Complete</div>
-        <h2 style="font-family: var(--display); font-size: 38px; color: #fff; text-shadow: 0 4px 10px rgba(82, 196, 26, 0.4);">MISSION CLEAR!</h2>
-        <div class="tally-score" id="clearScoreVal">+5,000</div>
+      <div class="panel" style="max-width: 520px;">
+        <div class="eyebrow" style="color: var(--green);">Operation Accomplished</div>
+        <h2 style="font-family: var(--font-heading); font-size: 38px; color: #fff; text-shadow: 0 4px 12px rgba(72, 214, 96, 0.4);">THEATER SECURED!</h2>
+        <div class="tally-score" id="clearScoreVal">+5,000 PTS</div>
         <div class="tally-grid">
-          <div class="tally-cell"><span>POWS RESCUED</span><strong id="clearPowVal">3 &times; 1,000</strong></div>
-          <div class="tally-cell"><span>ENEMIES NEUTRALIZED</span><strong id="clearKillVal">28</strong></div>
-          <div class="tally-cell"><span>SQUAD SURVIVAL</span><strong id="clearLivesVal">READY</strong></div>
+          <div class="tally-cell"><span>HOSTAGES RESCUED</span><strong id="clearPowVal">3 &times; 1,000</strong></div>
+          <div class="tally-cell"><span>HOSTILES ELIMINATED</span><strong id="clearKillVal">34</strong></div>
+          <div class="tally-cell"><span>OPERATOR STATUS</span><strong id="clearLivesVal">ACTIVE</strong></div>
         </div>
-        <button class="btn primary" id="nextStageBtn" type="button">NEXT MISSION &#9654;</button>
+        <button class="btn primary" id="nextStageBtn" type="button">PROCEED TO NEXT THEATER &#9654;</button>
       </div>
     </div>
 
     <!-- GAME OVER OVERLAY -->
     <div class="overlay" id="overOverlay">
-      <div class="panel" style="max-width: 500px;">
-        <div class="eyebrow" id="overEyebrow" style="color: var(--red);">Squad Neutralized</div>
-        <h2 style="font-family: var(--display); font-size: 40px; color: var(--red); text-shadow: 0 4px 12px rgba(255, 59, 48, 0.5);" id="overTitle">GAME OVER</h2>
+      <div class="panel" style="max-width: 480px;">
+        <div class="eyebrow" id="overEyebrow" style="color: var(--red);">Squad K.I.A.</div>
+        <h2 style="font-family: var(--font-heading); font-size: 42px; color: var(--red); text-shadow: 0 4px 14px rgba(255, 51, 51, 0.5);" id="overTitle">MISSION FAILED</h2>
         <div class="tally-score" id="finalScoreVal">00000</div>
         <div class="tally-grid">
-          <div class="tally-cell"><span>REACHED</span><strong id="finalStageVal">MISSION 1</strong></div>
+          <div class="tally-cell"><span>SECTOR REACHED</span><strong id="finalStageVal">OPERATION 1</strong></div>
           <div class="tally-cell"><span>TOTAL KILLS</span><strong id="finalKillVal">0</strong></div>
-          <div class="tally-cell"><span>POW BONUS</span><strong id="finalPowVal">0</strong></div>
+          <div class="tally-cell"><span>HOSTAGES SAVED</span><strong id="finalPowVal">0</strong></div>
         </div>
         <div style="display: flex; gap: 10px; justify-content: center;">
-          <button class="btn primary" id="playAgainBtn" type="button">TRY AGAIN</button>
+          <button class="btn primary" id="playAgainBtn" type="button">REDEPLOY SQUAD</button>
           <button class="btn secondary" id="overMenuBtn" type="button">MAIN MENU</button>
         </div>
       </div>
@@ -776,9 +780,9 @@
   <!-- Bottom Hints -->
   <footer class="footer-hints">
     <span><kbd>P</kbd> Pause</span>
-    <span><kbd>M</kbd> Mute Audio</span>
-    <span><kbd>T</kbd> Touch Controls</span>
-    <span>Close combat switches automatically to <strong>Knife Slash (+500pts)</strong></span>
+    <span><kbd>M</kbd> Mute Sound</span>
+    <span><kbd>T</kbd> Touchpad</span>
+    <span>Point-blank range automatically executes <strong>KA-BAR Combat Takedown (+500pts)</strong></span>
   </footer>
 </div>
 
@@ -787,17 +791,16 @@
   "use strict";
 
   /* ============================================================
-     1. CONSTANTS, VIEWPORT & AUDIO ENGINE
+     1. CONSTANTS, VIEWPORT & REALISTIC AUDIO SYSTEM
      ============================================================ */
   const VIEW_W = 960;
   const VIEW_H = 540;
   const GROUND_Y = 460;
   const GRAVITY = 2100;
-  const HIGH_KEY = "metalslug.high.score";
+  const HIGH_KEY = "ironrecon.high.score";
 
   const canvas = document.getElementById("game");
   const ctx = canvas.getContext("2d");
-  ctx.imageSmoothingEnabled = false;
 
   const el = {
     stageBadge: document.getElementById("stageBadge"),
@@ -854,7 +857,7 @@
   const aabb = (ax, ay, aw, ah, bx, by, bw, bh) =>
     ax < bx + bw && ax + aw > bx && ay < by + bh && ay + ah > by;
 
-  /* ---------------- Sound & Voice Synthesizer ---------------- */
+  /* ---------------- Realistic Military Sound Engine ---------------- */
   let audioCtx = null;
   let muted = false;
   let noiseBuf = null;
@@ -868,228 +871,284 @@
       const AC = window.AudioContext || window.webkitAudioContext;
       if (!AC) return;
       audioCtx = new AC();
-      const len = audioCtx.sampleRate * 0.5;
+      const len = audioCtx.sampleRate * 0.6;
       noiseBuf = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
       const ch = noiseBuf.getChannelData(0);
       for (let i = 0; i < len; i++) ch[i] = Math.random() * 2 - 1;
     } catch (e) {}
   }
 
-  function tone(freq, dur, type = "square", vol = 0.05, slideTo = null, delay = 0) {
+  function playGunCrack(pitch = 1000, bodyHz = 110, punch = 0.08, dur = 0.12) {
     if (!audioCtx || muted) return;
     try {
-      const t = audioCtx.currentTime + delay;
+      const t = audioCtx.currentTime;
+      // High frequency acoustic crack
+      if (noiseBuf) {
+        const src = audioCtx.createBufferSource();
+        src.buffer = noiseBuf;
+        const hp = audioCtx.createBiquadFilter();
+        hp.type = "bandpass";
+        hp.frequency.value = pitch;
+        hp.Q.value = 1.2;
+        const g = audioCtx.createGain();
+        g.gain.setValueAtTime(punch, t);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+        src.connect(hp);
+        hp.connect(g);
+        g.connect(audioCtx.destination);
+        src.start(t);
+        src.stop(t + dur);
+      }
+      // Low body punch
       const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = type;
-      osc.frequency.setValueAtTime(freq, t);
-      if (slideTo) osc.frequency.exponentialRampToValueAtTime(Math.max(20, slideTo), t + dur);
-      gain.gain.setValueAtTime(vol, t);
-      gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
+      const og = audioCtx.createGain();
+      osc.type = "sawtooth";
+      osc.frequency.setValueAtTime(bodyHz, t);
+      osc.frequency.exponentialRampToValueAtTime(30, t + dur * 1.5);
+      og.gain.setValueAtTime(punch * 0.9, t);
+      og.gain.exponentialRampToValueAtTime(0.0001, t + dur * 1.5);
+      osc.connect(og);
+      og.connect(audioCtx.destination);
       osc.start(t);
-      osc.stop(t + dur + 0.02);
+      osc.stop(t + dur * 1.5);
     } catch (e) {}
   }
 
-  function noise(dur, vol = 0.08, cutoff = 1000) {
-    if (!audioCtx || muted || !noiseBuf) return;
+  function playExplosion(big = false) {
+    if (!audioCtx || muted) return;
     try {
-      const src = audioCtx.createBufferSource();
-      src.buffer = noiseBuf;
-      const filter = audioCtx.createBiquadFilter();
-      filter.type = "lowpass";
-      filter.frequency.value = cutoff;
-      const gain = audioCtx.createGain();
-      gain.gain.setValueAtTime(vol, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
-      src.connect(filter);
-      filter.connect(gain);
-      gain.connect(audioCtx.destination);
-      src.start();
-      src.stop(audioCtx.currentTime + dur);
+      const t = audioCtx.currentTime;
+      const dur = big ? 0.55 : 0.35;
+      if (noiseBuf) {
+        const src = audioCtx.createBufferSource();
+        src.buffer = noiseBuf;
+        const lp = audioCtx.createBiquadFilter();
+        lp.type = "lowpass";
+        lp.frequency.setValueAtTime(big ? 600 : 900, t);
+        lp.frequency.exponentialRampToValueAtTime(80, t + dur);
+        const g = audioCtx.createGain();
+        g.gain.setValueAtTime(big ? 0.22 : 0.12, t);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+        src.connect(lp);
+        lp.connect(g);
+        g.connect(audioCtx.destination);
+        src.start(t);
+        src.stop(t + dur);
+      }
+      const osc = audioCtx.createOscillator();
+      const og = audioCtx.createGain();
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(big ? 90 : 130, t);
+      osc.frequency.exponentialRampToValueAtTime(25, t + dur);
+      og.gain.setValueAtTime(big ? 0.18 : 0.1, t);
+      og.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      osc.connect(og);
+      og.connect(audioCtx.destination);
+      osc.start(t);
+      osc.stop(t + dur);
     } catch (e) {}
   }
 
-  /* Arcade Voice Callouts */
-  function announce(phrase) {
+  function playShellPing() {
+    if (!audioCtx || muted) return;
+    try {
+      const t = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(2600 + rand(-200, 200), t);
+      g.gain.setValueAtTime(0.02, t);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
+      osc.connect(g);
+      g.connect(audioCtx.destination);
+      osc.start(t);
+      osc.stop(t + 0.06);
+    } catch (e) {}
+  }
+
+  function playKnifeSlash() {
+    if (!audioCtx || muted) return;
+    try {
+      const t = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(1400, t);
+      osc.frequency.exponentialRampToValueAtTime(250, t + 0.09);
+      g.gain.setValueAtTime(0.09, t);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.09);
+      osc.connect(g);
+      g.connect(audioCtx.destination);
+      osc.start(t);
+      osc.stop(t + 0.1);
+    } catch (e) {}
+  }
+
+  /* Tactical Comms Voice */
+  function announce(text) {
     if (muted) return;
     if ("speechSynthesis" in window) {
       try {
         window.speechSynthesis.cancel();
-        const u = new SpeechSynthesisUtterance(phrase);
-        u.pitch = 0.82;
-        u.rate = 1.15;
+        const u = new SpeechSynthesisUtterance(text);
+        u.pitch = 0.78;
+        u.rate = 1.18;
         u.volume = 1.0;
         window.speechSynthesis.speak(u);
       } catch (e) {}
     }
   }
 
-  const sfx = {
-    shoot(w) {
-      if (w === "shotgun") { noise(0.14, 0.14, 1600); tone(160, 0.12, "sawtooth", 0.06, 50); }
-      else if (w === "rocket") { tone(210, 0.25, "sawtooth", 0.07, 70); noise(0.2, 0.08, 800); }
-      else if (w === "flame") { noise(0.28, 0.12, 600); tone(180, 0.2, "sawtooth", 0.04, 90); }
-      else if (w === "laser") { tone(880, 0.08, "sine", 0.06, 220); }
-      else if (w === "hmg") { tone(580, 0.04, "square", 0.04, 280); }
-      else { tone(720, 0.045, "square", 0.035, 200); }
-    },
-    enemyShoot() { tone(280, 0.06, "sawtooth", 0.025, 140); },
-    knifeSlash() { tone(900, 0.09, "sine", 0.07, 180); noise(0.07, 0.05, 2400); },
-    tankCannon() { noise(0.35, 0.18, 450); tone(90, 0.32, "sawtooth", 0.09, 30); },
-    explosion(big) {
-      noise(big ? 0.45 : 0.25, big ? 0.16 : 0.09, big ? 550 : 850);
-      tone(big ? 75 : 120, big ? 0.38 : 0.2, "sawtooth", big ? 0.08 : 0.05, 30);
-    },
-    hit() { tone(220, 0.03, "square", 0.03, 100); },
-    hurt() { tone(180, 0.22, "sawtooth", 0.06, 60); noise(0.12, 0.05, 700); },
-    jump() { tone(260, 0.1, "sine", 0.04, 580); },
-    pickup() {
-      tone(523, 0.07, "square", 0.04, null, 0);
-      tone(659, 0.07, "square", 0.04, null, 0.06);
-      tone(784, 0.1, "square", 0.05, null, 0.12);
-    },
-    powRescue() {
-      tone(587, 0.09, "square", 0.04, null, 0);
-      tone(880, 0.16, "square", 0.05, null, 0.09);
-    },
-    alarm() {
-      [0, 0.22, 0.44].forEach((d) => tone(480, 0.16, "sawtooth", 0.05, 240, d));
-    },
-    stageClear() {
-      [523, 659, 784, 1046, 1318].forEach((f, i) => tone(f, 0.18, "square", 0.05, null, i * 0.12));
-    },
-    click() { tone(600, 0.04, "square", 0.03, 750); }
-  };
-
   /* ============================================================
-     2. WEAPONS & STAGES DEFINITION
+     2. REALISTIC FIREARMS & COMBAT THEATERS
      ============================================================ */
   const WEAPONS = {
-    pistol: { id: "P", name: "PISTOL", ammo: Infinity, cooldown: 0.2, damage: 1, speed: 960, spread: 0.015, color: "#ffe066", size: 3 },
-    hmg: { id: "H", name: "HEAVY MACHINE GUN", ammo: 150, cooldown: 0.075, damage: 1.2, speed: 1050, spread: 0.06, color: "#ffd43b", size: 3.5, voice: "Heavy machine gun!" },
-    shotgun: { id: "S", name: "SHOTGUN", ammo: 30, cooldown: 0.42, damage: 1.5, speed: 850, spread: 0.16, pellets: 5, color: "#ff9f43", size: 4, voice: "Shotgun!" },
-    rocket: { id: "R", name: "ROCKET LAUNCHER", ammo: 18, cooldown: 0.65, damage: 4, speed: 560, spread: 0.02, rocket: true, radius: 76, color: "#ff5e00", size: 5, voice: "Rocket launcher!" },
-    flame: { id: "F", name: "FLAME SHOT", ammo: 25, cooldown: 0.35, damage: 2, speed: 520, spread: 0.04, flame: true, radius: 55, color: "#ff3b30", size: 7, voice: "Flame shot!" },
-    laser: { id: "L", name: "LASER GUN", ammo: 120, cooldown: 0.05, damage: 1, speed: 1200, spread: 0, laser: true, color: "#40a9ff", size: 4, voice: "Laser gun!" }
+    m4: {
+      id: "M4", name: "M4A1 CARBINE", caliber: "5.56x45mm NATO",
+      ammo: Infinity, cooldown: 0.11, damage: 1.2, speed: 1100,
+      spread: 0.018, recoilDist: 4, voice: "Assault Rifle online!",
+      color: "#ffdf80", tracerLen: 18, tracerWidth: 2.5
+    },
+    shotgun: {
+      id: "SG", name: "BENELLI M4 TACTICAL", caliber: "12 Gauge Buckshot",
+      ammo: 32, cooldown: 0.45, damage: 1.6, speed: 900,
+      spread: 0.14, pellets: 7, recoilDist: 10, voice: "Combat Shotgun equipped!",
+      color: "#ffaa33", tracerLen: 12, tracerWidth: 3
+    },
+    barrett: {
+      id: "50CAL", name: "BARRETT .50 ANTI-MATERIEL", caliber: ".50 BMG Piercing",
+      ammo: 15, cooldown: 0.85, damage: 8.0, speed: 1500,
+      spread: 0.005, pierce: true, recoilDist: 14, voice: "Fifty Caliber ready!",
+      color: "#ffffff", tracerLen: 42, tracerWidth: 4
+    },
+    saw: {
+      id: "SAW", name: "M249 SAW LIGHT MACHINE GUN", caliber: "5.56mm Belt Fed",
+      ammo: 160, cooldown: 0.07, damage: 1.4, speed: 1080,
+      spread: 0.065, recoilDist: 5, voice: "Heavy Squad Weapon!",
+      color: "#ffd633", tracerLen: 22, tracerWidth: 3
+    },
+    rpg: {
+      id: "RPG", name: "RPG-7 ANTI-ARMOR LAUNCHER", caliber: "85mm Warhead",
+      ammo: 12, cooldown: 0.95, damage: 10.0, speed: 560,
+      spread: 0.02, rocket: true, radius: 95, recoilDist: 12, voice: "Rocket Launcher armed!",
+      color: "#ff6600", tracerLen: 24, tracerWidth: 6
+    }
   };
 
   const STAGES = [
     {
       num: 1,
-      title: "MISSION 1",
-      subtitle: "CANAL RUINS & REBEL OUTPOST",
+      title: "OPERATION 1",
+      subtitle: "GREEN VIPER &middot; RIVER INVASION",
       theme: {
-        skyTop: "#4298cc", skyBot: "#b5e5af", sun: "#fff5a5",
-        farMtn: "#4f846d", midMtn: "#356b4f", ground: "#5a4329", groundTop: "#438a35",
-        cloud: "rgba(255,255,255,0.75)", accent: "#ffd166"
+        skyTop: "#1e3745", skyBot: "#5a856a", sun: "#fff0aa",
+        fog: "rgba(30, 60, 40, 0.25)", farMtn: "#2c483a", midMtn: "#1c3628",
+        ground: "#3d3222", groundTop: "#2b4d24", platformColor: "#4a3c2c"
       },
-      width: 3200,
+      width: 3300,
       platforms: [
-        { x: 580, y: 360, w: 180 }, { x: 920, y: 310, w: 160 },
-        { x: 1340, y: 360, w: 210 }, { x: 1720, y: 310, w: 170 },
-        { x: 2100, y: 360, w: 190 }
+        { x: 560, y: 360, w: 190 }, { x: 920, y: 300, w: 170 },
+        { x: 1340, y: 360, w: 210 }, { x: 1760, y: 300, w: 180 },
+        { x: 2180, y: 360, w: 200 }
       ],
-      pows: [{ x: 800, reward: "shotgun" }, { x: 1540, reward: "hmg" }, { x: 2280, reward: "bomb" }],
-      crates: [{ x: 670 }, { x: 1450 }, { x: 1950 }],
-      slug: null,
+      pows: [{ x: 780, reward: "shotgun" }, { x: 1560, reward: "saw" }, { x: 2320, reward: "rpg" }],
+      crates: [{ x: 680 }, { x: 1450 }, { x: 2050 }],
+      tank: null,
       spawns: [
         { x: 480, type: "grunt" }, { x: 660, type: "knife" }, { x: 860, type: "shield" },
-        { x: 1100, type: "grunt" }, { x: 1280, type: "bazooka" }, { x: 1460, type: "grunt" },
-        { x: 1680, type: "heli" }, { x: 1880, type: "shield" }, { x: 2060, type: "knife" },
-        { x: 2250, type: "bazooka" }, { x: 2420, type: "grunt" }
+        { x: 1100, type: "grunt" }, { x: 1300, type: "rpg_enemy" }, { x: 1520, type: "grunt" },
+        { x: 1740, type: "heli" }, { x: 1960, type: "shield" }, { x: 2160, type: "knife" },
+        { x: 2380, type: "rpg_enemy" }, { x: 2560, type: "grunt" }
       ],
-      boss: { name: "TETSUYUKI (RIVER BATTLESHIP)", hp: 130, w: 220, h: 110, type: "boat" }
+      boss: { name: "CORVETTE 'TETSUYUKI' (NAVAL WARSHIP)", hp: 150, w: 230, h: 120, type: "boat" }
     },
     {
       num: 2,
-      title: "MISSION 2",
-      subtitle: "ARABIAN DESERT & ANCIENT RUINS",
+      title: "OPERATION 2",
+      subtitle: "DESERT SANDSTORM &middot; ARMOR CLASH",
       theme: {
-        skyTop: "#f59f42", skyBot: "#ffecb3", sun: "#fff9c4",
-        farMtn: "#c98547", midMtn: "#9e5c2a", ground: "#b88647", groundTop: "#deb26f",
-        cloud: "rgba(255,245,225,0.65)", accent: "#ff7714"
-      },
-      width: 3500,
-      platforms: [
-        { x: 600, y: 360, w: 180 }, { x: 960, y: 300, w: 160 },
-        { x: 1360, y: 350, w: 200 }, { x: 1800, y: 310, w: 180 },
-        { x: 2200, y: 360, w: 200 }, { x: 2560, y: 300, w: 170 }
-      ],
-      pows: [{ x: 740, reward: "rocket" }, { x: 1600, reward: "flame" }, { x: 2360, reward: "bomb" }],
-      crates: [{ x: 880 }, { x: 1700 }, { x: 2480 }],
-      slug: { x: 1040, hp: 5 }, // SV-001 METAL SLUG TANK AVAILABLE!
-      spawns: [
-        { x: 520, type: "grunt" }, { x: 720, type: "knife" }, { x: 920, type: "bazooka" },
-        { x: 1200, type: "heli" }, { x: 1420, type: "shield" }, { x: 1640, type: "grunt" },
-        { x: 1860, type: "bazooka" }, { x: 2040, type: "heli" }, { x: 2240, type: "shield" },
-        { x: 2450, type: "knife" }, { x: 2680, type: "grunt" }
-      ],
-      boss: { name: "IRON NOKANA (SIEGE TANK)", hp: 170, w: 230, h: 120, type: "tank" }
-    },
-    {
-      num: 3,
-      title: "MISSION 3",
-      subtitle: "FROZEN FRONT & RAILWAY FORTRESS",
-      theme: {
-        skyTop: "#629ad1", skyBot: "#d8efff", sun: "#ffffff",
-        farMtn: "#8bb1d6", midMtn: "#54789e", ground: "#cadceb", groundTop: "#ffffff",
-        cloud: "rgba(255,255,255,0.85)", accent: "#3291ff"
+        skyTop: "#7a5231", skyBot: "#d9a56c", sun: "#fff8d6",
+        fog: "rgba(217, 165, 108, 0.3)", farMtn: "#8a5833", midMtn: "#663e20",
+        ground: "#8c6538", groundTop: "#ad834e", platformColor: "#664b2c"
       },
       width: 3600,
       platforms: [
-        { x: 540, y: 360, w: 180 }, { x: 880, y: 300, w: 160 },
-        { x: 1280, y: 350, w: 220 }, { x: 1680, y: 300, w: 180 },
-        { x: 2080, y: 350, w: 200 }, { x: 2480, y: 310, w: 180 },
-        { x: 2800, y: 360, w: 180 }
+        { x: 600, y: 360, w: 180 }, { x: 980, y: 300, w: 170 },
+        { x: 1400, y: 350, w: 220 }, { x: 1840, y: 300, w: 190 },
+        { x: 2280, y: 360, w: 210 }, { x: 2680, y: 300, w: 180 }
       ],
-      pows: [{ x: 680, reward: "laser" }, { x: 1440, reward: "shotgun" }, { x: 2260, reward: "rocket" }, { x: 2900, reward: "bomb" }],
-      crates: [{ x: 780 }, { x: 1560 }, { x: 2380 }],
-      slug: { x: 1860, hp: 5 }, // SV-001 METAL SLUG TANK
+      pows: [{ x: 740, reward: "barrett" }, { x: 1620, reward: "saw" }, { x: 2420, reward: "rpg" }],
+      crates: [{ x: 880 }, { x: 1740 }, { x: 2540 }],
+      tank: { x: 1080, hp: 6 }, // M2 BRADLEY COMBAT TANK!
+      spawns: [
+        { x: 500, type: "grunt" }, { x: 720, type: "sniper" }, { x: 940, type: "rpg_enemy" },
+        { x: 1220, type: "heli" }, { x: 1460, type: "shield" }, { x: 1700, type: "grunt" },
+        { x: 1920, type: "rpg_enemy" }, { x: 2120, type: "heli" }, { x: 2340, type: "shield" },
+        { x: 2560, type: "sniper" }, { x: 2780, type: "grunt" }
+      ],
+      boss: { name: "SIEGE FORTRESS 'IRON NOKANA'", hp: 190, w: 240, h: 130, type: "tank" }
+    },
+    {
+      num: 3,
+      title: "OPERATION 3",
+      subtitle: "FROSTBITE FORTRESS &middot; ARCTIC STRIKE",
+      theme: {
+        skyTop: "#1c2e42", skyBot: "#7096b8", sun: "#ffffff",
+        fog: "rgba(180, 210, 240, 0.25)", farMtn: "#395875", midMtn: "#243c52",
+        ground: "#8ca8bf", groundTop: "#d6e8f7", platformColor: "#475c6e"
+      },
+      width: 3700,
+      platforms: [
+        { x: 540, y: 360, w: 190 }, { x: 900, y: 300, w: 170 },
+        { x: 1320, y: 350, w: 220 }, { x: 1740, y: 300, w: 190 },
+        { x: 2160, y: 350, w: 210 }, { x: 2580, y: 300, w: 190 },
+        { x: 2920, y: 360, w: 190 }
+      ],
+      pows: [{ x: 700, reward: "barrett" }, { x: 1500, reward: "saw" }, { x: 2360, reward: "rpg" }, { x: 3020, reward: "shotgun" }],
+      crates: [{ x: 800 }, { x: 1600 }, { x: 2440 }],
+      tank: { x: 1840, hp: 6 },
       spawns: [
         { x: 480, type: "grunt" }, { x: 680, type: "shield" }, { x: 880, type: "heli" },
-        { x: 1120, type: "bazooka" }, { x: 1360, type: "knife" }, { x: 1580, type: "shield" },
-        { x: 1820, type: "heli" }, { x: 2050, type: "bazooka" }, { x: 2300, type: "grunt" },
-        { x: 2520, type: "heli" }, { x: 2740, type: "shield" }
+        { x: 1140, type: "sniper" }, { x: 1380, type: "knife" }, { x: 1620, type: "shield" },
+        { x: 1860, type: "heli" }, { x: 2100, type: "rpg_enemy" }, { x: 2350, type: "grunt" },
+        { x: 2600, type: "heli" }, { x: 2840, type: "shield" }
       ],
-      boss: { name: "HI-DO (GENERAL'S GUNSHIP)", hp: 200, w: 240, h: 100, type: "heli_boss" }
+      boss: { name: "GUNSHIP 'HI-DO' (TWIN-TURBINE AIR CRUISER)", hp: 220, w: 250, h: 110, type: "heli_boss" }
     },
     {
       num: 4,
-      title: "FINAL MISSION",
-      subtitle: "UNDERGROUND CORE & JUPITER ENGINE",
+      title: "OPERATION 4",
+      subtitle: "DARK CORE &middot; THE APEX ENGINE",
       theme: {
-        skyTop: "#1c1426", skyBot: "#3b1e36", sun: "#ff3b30",
-        farMtn: "#422847", midMtn: "#26152b", ground: "#221a24", groundTop: "#4a354f",
-        cloud: "rgba(255,100,100,0.4)", accent: "#ff3b30"
+        skyTop: "#0d0a14", skyBot: "#2b1828", sun: "#ff3333",
+        fog: "rgba(50, 15, 30, 0.35)", farMtn: "#26152b", midMtn: "#180c1c",
+        ground: "#1b1421", groundTop: "#3d2b45", platformColor: "#332238"
       },
-      width: 3800,
+      width: 3900,
       platforms: [
-        { x: 520, y: 360, w: 190 }, { x: 860, y: 300, w: 170 },
-        { x: 1260, y: 350, w: 220 }, { x: 1680, y: 300, w: 190 },
-        { x: 2100, y: 350, w: 210 }, { x: 2520, y: 300, w: 180 },
-        { x: 2920, y: 360, w: 200 }
+        { x: 520, y: 360, w: 200 }, { x: 880, y: 300, w: 180 },
+        { x: 1300, y: 350, w: 230 }, { x: 1740, y: 300, w: 200 },
+        { x: 2180, y: 350, w: 220 }, { x: 2620, y: 300, w: 190 },
+        { x: 3040, y: 360, w: 210 }
       ],
-      pows: [{ x: 720, reward: "laser" }, { x: 1480, reward: "flame" }, { x: 2280, reward: "rocket" }, { x: 3040, reward: "bomb" }],
-      crates: [{ x: 820 }, { x: 1580 }, { x: 2420 }, { x: 3120 }],
-      slug: { x: 1340, hp: 6 }, // Final battle tank!
+      pows: [{ x: 740, reward: "barrett" }, { x: 1520, reward: "saw" }, { x: 2320, reward: "rpg" }, { x: 3120, reward: "shotgun" }],
+      crates: [{ x: 840 }, { x: 1620 }, { x: 2480 }, { x: 3220 }],
+      tank: { x: 1400, hp: 7 },
       spawns: [
-        { x: 480, type: "shield" }, { x: 680, type: "bazooka" }, { x: 880, type: "heli" },
-        { x: 1100, type: "knife" }, { x: 1320, type: "shield" }, { x: 1550, type: "bazooka" },
-        { x: 1780, type: "heli" }, { x: 2020, type: "shield" }, { x: 2260, type: "bazooka" },
-        { x: 2500, type: "heli" }, { x: 2750, type: "shield" }, { x: 2980, type: "bazooka" }
+        { x: 480, type: "shield" }, { x: 700, type: "sniper" }, { x: 920, type: "heli" },
+        { x: 1160, type: "knife" }, { x: 1400, type: "shield" }, { x: 1640, type: "rpg_enemy" },
+        { x: 1880, type: "heli" }, { x: 2140, type: "shield" }, { x: 2400, type: "rpg_enemy" },
+        { x: 2660, type: "heli" }, { x: 2920, type: "shield" }, { x: 3160, type: "sniper" }
       ],
-      boss: { name: "THE JUPITER KING (WAR MECH)", hp: 250, w: 250, h: 160, type: "mech" }
+      boss: { name: "BIPEDAL MECH 'JUPITER KING'", hp: 280, w: 260, h: 170, type: "mech" }
     }
   ];
 
   /* ============================================================
-     3. GAME STATE & ENTITIES
+     3. GAME ENTITIES & MODELS
      ============================================================ */
   const G = {
-    phase: "menu", // menu, playing, paused, stageclear, gameover, victory
+    phase: "menu",
     selectedStage: 0,
     twoPlayer: true,
     score: 0,
@@ -1105,12 +1164,14 @@
     enemies: [],
     pows: [],
     bullets: [],
+    casings: [],
     grenades: [],
-    slugs: [],
+    tanks: [],
     crates: [],
     pickups: [],
     explosions: [],
     particles: [],
+    bloodDecals: [],
     texts: [],
     boss: null,
     bossSpawned: false,
@@ -1127,23 +1188,24 @@
     try { localStorage.setItem(HIGH_KEY, String(val)); } catch (e) {}
   }
 
-  /* ---------------- Player Entity ---------------- */
+  /* ---------------- Real Man Soldier Model ---------------- */
   function createPlayer(id, x) {
     return {
       id,
-      name: id === 1 ? "MARCO" : "TARMA",
+      name: id === 1 ? "SGT. STONE" : "CPT. VANCE",
       x, y: GROUND_Y,
       vx: 0, vy: 0,
       facing: 1,
+      aimAngle: 0,
       aimUp: false,
       crouch: false,
       onGround: true,
-      inSlug: null,
+      inTank: null,
 
       hp: 3, maxHp: 3,
       lives: 3,
       bombs: 10,
-      weapon: "pistol",
+      weapon: "m4",
       ammo: Infinity,
 
       cooldown: 0,
@@ -1157,59 +1219,57 @@
       anim: 0,
       muzzleFlash: 0,
       recoil: 0,
-      color: id === 1 ? { hair: "#ffe699", band: "#ff3b30", shirt: "#ffffff", pants: "#385e38", vest: "#ffffff" }
-                      : { hair: "#4a3528", band: "#ffd166", shirt: "#2b2b2b", pants: "#3e4756", vest: "#7c5535" }
+      type: id === 1 ? "stone" : "vance"
     };
   }
 
-  /* ---------------- SV-001 Metal Slug Tank ---------------- */
-  function createSlug(x, hp) {
+  /* ---------------- M2 Bradley Assault Tank ---------------- */
+  function createTank(x, hp) {
     return {
       x, y: GROUND_Y,
       vx: 0, vy: 0,
-      hp: hp || 5, maxHp: hp || 5,
+      hp: hp || 6, maxHp: hp || 6,
       driver: null,
       facing: 1,
       cannonCooldown: 0,
-      vulcanCooldown: 0,
+      autocannonCooldown: 0,
       anim: 0,
-      hitFlash: 0,
-      turretAngle: 0
+      hitFlash: 0
     };
   }
 
-  /* ---------------- POW Hostage ---------------- */
+  /* ---------------- Hostage / POW ---------------- */
   function createPow(data) {
     return {
       x: data.x, y: GROUND_Y,
       reward: data.reward,
       rescued: false,
       saluteTimer: 0,
-      runAwayTimer: 0,
       anim: Math.random() * 5
     };
   }
 
-  /* ---------------- Enemies ---------------- */
+  /* ---------------- Real Enemy Models ---------------- */
   const ENEMY_DEFS = {
-    grunt: { hp: 2, speed: 70, score: 100, w: 26, h: 44, range: 450, fireRate: 1.6, type: "grunt" },
-    knife: { hp: 2, speed: 180, score: 150, w: 24, h: 42, range: 0, fireRate: 99, type: "knife" },
-    shield: { hp: 6, speed: 45, score: 200, w: 32, h: 44, range: 380, fireRate: 2.2, type: "shield" },
-    bazooka: { hp: 3, speed: 50, score: 250, w: 28, h: 46, range: 550, fireRate: 2.5, type: "bazooka" },
-    heli: { hp: 8, speed: 110, score: 400, w: 56, h: 36, range: 600, fireRate: 1.8, type: "heli" }
+    grunt: { hp: 2, speed: 75, score: 100, w: 28, h: 46, range: 460, fireRate: 1.5, type: "grunt" },
+    knife: { hp: 2, speed: 190, score: 150, w: 26, h: 44, range: 0, fireRate: 99, type: "knife" },
+    shield: { hp: 7, speed: 48, score: 220, w: 34, h: 48, range: 380, fireRate: 2.2, type: "shield" },
+    sniper: { hp: 3, speed: 40, score: 280, w: 28, h: 46, range: 680, fireRate: 2.6, type: "sniper" },
+    rpg_enemy: { hp: 3, speed: 50, score: 260, w: 30, h: 48, range: 560, fireRate: 2.8, type: "rpg_enemy" },
+    heli: { hp: 9, speed: 120, score: 450, w: 68, h: 40, range: 650, fireRate: 1.7, type: "heli" }
   };
 
   function createEnemy(x, type) {
     const def = ENEMY_DEFS[type] || ENEMY_DEFS.grunt;
     const isFlying = type === "heli";
     return {
-      x, y: isFlying ? 180 + rand(-40, 40) : GROUND_Y,
+      x, y: isFlying ? 175 + rand(-35, 35) : GROUND_Y,
       type,
       hp: def.hp, maxHp: def.hp,
       w: def.w, h: def.h,
       vx: 0, vy: 0,
       facing: -1,
-      shootCd: rand(0.5, 1.5),
+      shootCd: rand(0.4, 1.4),
       hitFlash: 0,
       anim: Math.random() * 10,
       dead: false,
@@ -1218,7 +1278,7 @@
   }
 
   /* ============================================================
-     4. CONTROLS & INPUT SYSTEM (KEYBOARD, TOUCH, GAMEPAD)
+     4. CONTROLS SYSTEM
      ============================================================ */
   const keys = new Set();
   const P1_KEYS = { up: "KeyW", down: "KeyS", left: "KeyA", right: "KeyD", shoot: "KeyJ", jump: "KeyK", bomb: "KeyL", jumpAlt: "Space" };
@@ -1240,7 +1300,7 @@
     keys.delete(e.code);
   });
 
-  /* Touch Virtual Buttons Handling */
+  /* Touch Virtual Buttons */
   const touchState = { up: false, down: false, left: false, right: false, fire: false, jump: false, bomb: false };
 
   function setupTouch() {
@@ -1285,7 +1345,7 @@
     }
   }
 
-  /* Gamepad API Poll */
+  /* Gamepad Poll */
   function pollGamepads() {
     if (!navigator.getGamepads) return;
     const gpList = navigator.getGamepads();
@@ -1293,17 +1353,16 @@
       const gp = gpList[i];
       if (!gp || !G.players[i] || !G.players[i].alive) continue;
       const p = G.players[i];
-      const axesThreshold = 0.4;
       const x = gp.axes[0] || 0;
       const y = gp.axes[1] || 0;
 
       const btnShoot = gp.buttons[2]?.pressed || gp.buttons[7]?.pressed; // X / RT
       const btnJump = gp.buttons[0]?.pressed; // A
       const btnBomb = gp.buttons[1]?.pressed || gp.buttons[5]?.pressed; // B / RB
-      const btnUp = gp.buttons[12]?.pressed || y < -axesThreshold;
-      const btnDown = gp.buttons[13]?.pressed || y > axesThreshold;
-      const btnLeft = gp.buttons[14]?.pressed || x < -axesThreshold;
-      const btnRight = gp.buttons[15]?.pressed || x > axesThreshold;
+      const btnUp = gp.buttons[12]?.pressed || y < -0.4;
+      const btnDown = gp.buttons[13]?.pressed || y > 0.4;
+      const btnLeft = gp.buttons[14]?.pressed || x < -0.4;
+      const btnRight = gp.buttons[15]?.pressed || x > 0.4;
 
       if (btnShoot) tryShoot(p);
       if (btnBomb) tryThrowBomb(p);
@@ -1329,25 +1388,22 @@
 
     G.enemies = [];
     G.bullets = [];
+    G.casings = [];
     G.grenades = [];
-    G.slugs = [];
+    G.tanks = [];
     G.pickups = [];
     G.explosions = [];
     G.particles = [];
+    G.bloodDecals = [];
     G.texts = [];
 
-    // Create POWs
     G.pows = (def.pows || []).map(createPow);
+    G.crates = (def.crates || []).map((c) => ({ x: c.x, y: GROUND_Y - 36, w: 36, h: 36, hp: 2 }));
 
-    // Create Crates
-    G.crates = (def.crates || []).map((c) => ({ x: c.x, y: GROUND_Y - 34, w: 34, h: 34, hp: 2 }));
-
-    // Create SV-001 Metal Slug Tank if present in stage
-    if (def.slug) {
-      G.slugs.push(createSlug(def.slug.x, def.slug.hp));
+    if (def.tank) {
+      G.tanks.push(createTank(def.tank.x, def.tank.hp));
     }
 
-    // Preserve player lives & scores
     const p1Lives = G.players[0] ? G.players[0].lives : 3;
     const p2Lives = G.players[1] ? G.players[1].lives : 3;
     G.players = [createPlayer(1, 140)];
@@ -1363,12 +1419,11 @@
     }
 
     el.stageBadge.textContent = def.title;
-    G.banner = { title: def.title, sub: def.subtitle, timer: 3.0 };
+    G.banner = { title: def.title, sub: def.subtitle, timer: 3.2 };
     G.phase = "playing";
     updateHud();
 
-    announce(def.title + "! START!");
-    sfx.alarm();
+    announce(def.title + "! Mission is a go!");
   }
 
   function startCampaign(stageIdx, twoP) {
@@ -1390,18 +1445,17 @@
   function stageClear() {
     G.phase = "stageclear";
     const powBonus = G.powsRescued * 1000;
-    const stageBonus = 3000 + G.selectedStage * 2000;
+    const stageBonus = 3500 + G.selectedStage * 2500;
     const totalBonus = stageBonus + powBonus;
     G.score += totalBonus;
 
-    el.clearScoreVal.textContent = "+" + totalBonus.toLocaleString();
+    el.clearScoreVal.textContent = "+" + totalBonus.toLocaleString() + " PTS";
     el.clearPowVal.textContent = G.powsRescued + " \u00d7 1,000";
     el.clearKillVal.textContent = String(G.kills);
     el.clearLivesVal.textContent = G.players.filter((p) => p.alive).length + " OPERATIONAL";
 
     el.clearOverlay.classList.add("show");
-    announce("Mission Complete!");
-    sfx.stageClear();
+    announce("Sector secured! Excellent work operators!");
     updateHud();
   }
 
@@ -1416,10 +1470,10 @@
     el.finalKillVal.textContent = String(G.kills);
     el.finalPowVal.textContent = String(G.powsRescued);
 
-    el.overEyebrow.textContent = "SQUAD DOWN";
-    el.overTitle.textContent = "GAME OVER";
+    el.overEyebrow.textContent = "SQUAD COMPROMISED";
+    el.overTitle.textContent = "MISSION FAILED";
     el.overOverlay.classList.add("show");
-    announce("Game Over!");
+    announce("Mission failed. All units neutralized.");
   }
 
   function victory() {
@@ -1429,15 +1483,14 @@
       saveHiScore(G.hiScore);
     }
     el.finalScoreVal.textContent = String(G.score);
-    el.finalStageVal.textContent = "ALL CLEARED";
+    el.finalStageVal.textContent = "ALL SECTORS SECURED";
     el.finalKillVal.textContent = String(G.kills);
     el.finalPowVal.textContent = String(G.powsRescued);
 
     el.overEyebrow.textContent = "WAR WON";
-    el.overTitle.textContent = "MISSION COMPLETE!";
+    el.overTitle.textContent = "CAMPAIGN VICTORY!";
     el.overOverlay.classList.add("show");
-    announce("All Missions Complete! Outstanding Soldier!");
-    sfx.stageClear();
+    announce("Campaign victory! The hostile forces have been crushed!");
   }
 
   /* ============================================================
@@ -1445,63 +1498,64 @@
      ============================================================ */
   function playerJump(p) {
     if (!p.onGround) return;
-    p.vy = -730;
+    p.vy = -740;
     p.onGround = false;
-    sfx.jump();
   }
 
-  /* Close Combat Knife Slash or Gunfire */
+  /* Close Combat Melee Knife Takedown or Realistic Firearm */
   function tryShoot(p) {
     if (!p.alive || p.cooldown > 0) return;
 
-    // Check for nearby enemy for close combat KNIFE SLASH (+500pts)!
-    if (!p.inSlug) {
+    // Check for nearby hostile for KA-BAR KNIFE TAKEDOWN (+500pts)!
+    if (!p.inTank) {
       for (const e of G.enemies) {
-        if (!e.dead && Math.abs(e.x - p.x) < 42 && Math.abs(e.y - p.y) < 38) {
-          p.knifeCooldown = 0.28;
-          p.cooldown = 0.28;
-          damageEnemy(e, 5);
+        if (!e.dead && Math.abs(e.x - p.x) < 46 && Math.abs(e.y - p.y) < 40) {
+          p.knifeCooldown = 0.3;
+          p.cooldown = 0.3;
+          damageEnemy(e, 6);
           G.score += 500;
-          addText(e.x, e.y - 40, "KNIFE +500", "#ff4d4f");
-          burstParticles(e.x, e.y - 20, ["#ffffff", "#ff4d4f", "#ffd166"], 14, 260);
-          sfx.knifeSlash();
+          addText(e.x, e.y - 45, "KA-BAR TAKEDOWN +500", "#ff3333");
+          burstBlood(e.x, e.y - 24, 18);
+          playKnifeSlash();
           updateHud();
           return;
         }
       }
     }
 
-    // Slug Vehicle shooting
-    if (p.inSlug) {
-      const slug = p.inSlug;
-      slug.vulcanCooldown = 0.08;
-      p.cooldown = 0.08;
-      const angle = slug.facing > 0 ? 0 : Math.PI;
+    // Vehicle Autocannon if inside M2 Bradley Tank
+    if (p.inTank) {
+      const tank = p.inTank;
+      tank.autocannonCooldown = 0.09;
+      p.cooldown = 0.09;
+      const angle = tank.facing > 0 ? 0 : Math.PI;
       G.bullets.push({
-        x: slug.x + slug.facing * 40, y: slug.y - 50,
-        vx: Math.cos(angle) * 1100, vy: 0,
-        damage: 2, friendly: true, color: "#ffd43b", size: 4
+        x: tank.x + tank.facing * 48, y: tank.y - 52,
+        vx: Math.cos(angle) * 1250, vy: 0,
+        damage: 3, friendly: true, color: "#ffe066", tracerLen: 28, tracerWidth: 4
       });
-      sfx.shoot("hmg");
+      playGunCrack(1400, 160, 0.12, 0.14);
+      G.shake = 5;
       return;
     }
 
-    // Normal Weapon shooting
-    const w = WEAPONS[p.weapon] || WEAPONS.pistol;
+    // Realistic Firearm firing
+    const w = WEAPONS[p.weapon] || WEAPONS.m4;
     p.cooldown = w.cooldown;
-    p.muzzleFlash = 0.07;
-    p.recoil = 1;
+    p.muzzleFlash = 0.08;
+    p.recoil = w.recoilDist;
 
     let angle = p.facing > 0 ? 0 : Math.PI;
     if (p.aimUp) angle = -Math.PI / 2;
     if (!p.onGround && (keys.has(p.id === 1 ? P1_KEYS.down : P2_KEYS.down) || touchState.down)) {
-      angle = Math.PI / 2; // Shoot down in mid-air!
-      p.vy = Math.min(p.vy, 100); // Recoil hovering effect!
+      angle = Math.PI / 2;
+      p.vy = Math.min(p.vy, 90);
     }
+    p.aimAngle = angle;
 
     const count = w.pellets || 1;
-    const originY = p.y - (p.crouch ? 18 : p.aimUp ? 56 : 32);
-    const originX = p.x + (p.aimUp ? 0 : p.facing * 22);
+    const originY = p.y - (p.crouch ? 22 : p.aimUp ? 58 : 34);
+    const originX = p.x + (p.aimUp ? 0 : p.facing * 26);
 
     for (let i = 0; i < count; i++) {
       const spread = rand(-w.spread, w.spread);
@@ -1513,75 +1567,88 @@
         damage: w.damage,
         friendly: true,
         rocket: !!w.rocket,
-        flame: !!w.flame,
-        laser: !!w.laser,
+        pierce: !!w.pierce,
         radius: w.radius || 0,
         color: w.color,
-        size: w.size,
+        tracerLen: w.tracerLen,
+        tracerWidth: w.tracerWidth,
         life: 1.8
       });
     }
 
-    if (p.weapon !== "pistol") {
+    // Realistic ejecting brass shell casing
+    if (!w.rocket) {
+      G.casings.push({
+        x: originX - p.facing * 10, y: originY,
+        vx: -p.facing * rand(60, 140), vy: -rand(120, 240),
+        rot: Math.random() * Math.PI, vRot: rand(-12, 12),
+        isShotgun: p.weapon === "shotgun",
+        life: 2.5
+      });
+      setTimeout(playShellPing, 180);
+    }
+
+    // Authentic Gun Audio
+    if (p.weapon === "shotgun") playGunCrack(800, 80, 0.18, 0.2);
+    else if (p.weapon === "barrett") { playGunCrack(600, 50, 0.25, 0.25); G.shake = 12; }
+    else if (p.weapon === "rpg") { playGunCrack(500, 70, 0.16, 0.22); G.shake = 10; }
+    else playGunCrack(1100, 110, 0.08, 0.1);
+
+    if (p.weapon !== "m4") {
       p.ammo -= 1;
       if (p.ammo <= 0) {
-        p.weapon = "pistol";
+        p.weapon = "m4";
         p.ammo = Infinity;
       }
     }
-    sfx.shoot(p.weapon);
     updateHud();
   }
 
   function tryThrowBomb(p) {
     if (!p.alive || p.bombCooldown > 0 || p.bombs <= 0) return;
-    p.bombCooldown = 0.65;
+    p.bombCooldown = 0.7;
     p.bombs -= 1;
 
-    // Tank Cannon if in Metal Slug!
-    if (p.inSlug) {
-      const slug = p.inSlug;
+    // Tank Main Gun if mounted
+    if (p.inTank) {
+      const tank = p.inTank;
       G.bullets.push({
-        x: slug.x + slug.facing * 44, y: slug.y - 48,
-        vx: slug.facing * 850, vy: -60,
-        damage: 8, friendly: true, rocket: true, radius: 90,
-        color: "#ff7714", size: 7, life: 2.0
+        x: tank.x + tank.facing * 52, y: tank.y - 50,
+        vx: tank.facing * 920, vy: -40,
+        damage: 12, friendly: true, rocket: true, radius: 105,
+        color: "#ff7714", tracerLen: 32, tracerWidth: 7, life: 2.0
       });
-      sfx.tankCannon();
-      G.shake = 12;
+      playExplosion(true);
+      G.shake = 15;
       return;
     }
 
-    // Normal hand grenade toss
+    // M67 Frag Grenade toss
     G.grenades.push({
-      x: p.x + p.facing * 16, y: p.y - 36,
-      vx: p.facing * 360, vy: -440,
-      fuse: 0.95
+      x: p.x + p.facing * 18, y: p.y - 38,
+      vx: p.facing * 380, vy: -460,
+      fuse: 1.05
     });
-    sfx.shoot("flame");
     updateHud();
   }
 
   function hurtPlayer(p, dmg) {
     if (!p.alive || p.invuln > 0 || G.phase !== "playing") return;
 
-    // If inside Metal Slug Tank, tank absorbs damage!
-    if (p.inSlug) {
-      const slug = p.inSlug;
-      slug.hp -= 1;
-      slug.hitFlash = 0.12;
-      sfx.hit();
+    if (p.inTank) {
+      const tank = p.inTank;
+      tank.hp -= 1;
+      tank.hitFlash = 0.12;
       G.shake = 8;
-      if (slug.hp <= 0) {
-        // Eject player from exploding tank!
-        p.inSlug = null;
-        slug.driver = null;
-        p.vy = -600;
-        p.vx = -p.facing * 200;
-        p.invuln = 1.5;
-        addExplosion(slug.x, slug.y - 30, 1.4);
-        G.slugs = G.slugs.filter((s) => s !== slug);
-        addText(slug.x, slug.y - 60, "SLUG OUT!", "#ff4d4f");
+      if (tank.hp <= 0) {
+        p.inTank = null;
+        tank.driver = null;
+        p.vy = -620;
+        p.vx = -p.facing * 220;
+        p.invuln = 1.6;
+        addExplosion(tank.x, tank.y - 32, 1.5);
+        G.tanks = G.tanks.filter((t) => t !== tank);
+        addText(tank.x, tank.y - 65, "ARMOR BREACHED - EJECT!", "#ff3333");
       }
       return;
     }
@@ -1589,18 +1656,16 @@
     p.hp -= dmg;
     p.invuln = 1.6;
     p.hurtFlash = 0.25;
-    G.shake = 10;
-    sfx.hurt();
+    G.shake = 12;
+    burstBlood(p.x, p.y - 25, 14);
 
     if (p.hp <= 0) {
       p.alive = false;
       p.lives -= 1;
       p.hp = 0;
-      burstParticles(p.x, p.y - 20, ["#ff3b30", "#ff7714", "#ffd166"], 20, 280);
-      addExplosion(p.x, p.y - 20, 0.7);
-      if (p.lives > 0) {
-        p.respawnTimer = 1.8;
-      }
+      burstBlood(p.x, p.y - 25, 24);
+      addExplosion(p.x, p.y - 20, 0.6);
+      if (p.lives > 0) p.respawnTimer = 2.0;
     }
     updateHud();
   }
@@ -1608,39 +1673,37 @@
   function respawnPlayer(p) {
     p.alive = true;
     p.hp = p.maxHp;
-    p.x = clamp(G.cameraX + 100 + (p.id === 2 ? 80 : 0), 40, STAGES[G.selectedStage].width - 40);
-    p.y = 80; // Parachute drop!
+    p.x = clamp(G.cameraX + 110 + (p.id === 2 ? 80 : 0), 40, STAGES[G.selectedStage].width - 40);
+    p.y = 80;
     p.vy = 80;
     p.vx = 0;
-    p.weapon = "pistol";
+    p.weapon = "m4";
     p.ammo = Infinity;
     p.bombs = 10;
     p.invuln = 2.5;
     p.respawnTimer = 0;
-    sfx.jump();
-    addText(p.x, p.y, "REINFORCEMENTS!", "#3291ff");
+    addText(p.x, p.y, "REINFORCEMENTS AIR-DROPPED", "#38a2ff");
   }
 
   function damageEnemy(e, dmg) {
     if (e.dead) return;
     e.hp -= dmg;
     e.hitFlash = 0.1;
-    sfx.hit();
+    burstBlood(e.x, e.y - 22, 8);
 
     if (e.hp <= 0) {
       e.dead = true;
       const def = ENEMY_DEFS[e.type] || ENEMY_DEFS.grunt;
       G.score += def.score;
       G.kills += 1;
-      addText(e.x, e.y - 34, "+" + def.score, "#ffd166");
-      burstParticles(e.x, e.y - 20, ["#ff3b30", "#ffd166", "#ffffff", "#4a3528"], 18, 280);
-      addExplosion(e.x, e.y - 20, e.type === "heli" ? 0.8 : 0.45);
+      addText(e.x, e.y - 36, "+" + def.score, "#ffbe3b");
+      burstBlood(e.x, e.y - 22, 22);
 
-      // Random chance to drop ammo or bomb crate
-      if (Math.random() < 0.22) {
-        const types = ["hmg", "shotgun", "rocket", "flame", "laser", "bomb"];
+      if (e.type === "heli") addExplosion(e.x, e.y - 20, 0.9);
+      else if (Math.random() < 0.28) {
+        const types = ["m4", "shotgun", "barrett", "saw", "rpg", "medkit"];
         const chosen = types[Math.floor(Math.random() * types.length)];
-        G.pickups.push({ x: e.x, y: e.y - 20, type: chosen, life: 16, bob: 0 });
+        G.pickups.push({ x: e.x, y: e.y - 22, type: chosen, life: 18, bob: 0 });
       }
     }
   }
@@ -1650,39 +1713,38 @@
     if (!b || b.dead) return;
     b.hp -= dmg;
     b.hitFlash = 0.08;
-    sfx.hit();
 
     if (b.hp <= 0) {
       b.dead = true;
       b.hp = 0;
-      G.score += 5000 + G.selectedStage * 2500;
-      G.shake = 24;
-      for (let i = 0; i < 9; i++) {
+      G.score += 6000 + G.selectedStage * 3000;
+      G.shake = 26;
+      for (let i = 0; i < 10; i++) {
         setTimeout(() => {
-          addExplosion(b.x + rand(-b.w/2, b.w/2), b.y - rand(20, b.h), 0.9);
-          sfx.explosion(true);
-        }, i * 160);
+          addExplosion(b.x + rand(-b.w/2, b.w/2), b.y - rand(20, b.h), 1.0);
+          playExplosion(true);
+        }, i * 150);
       }
       setTimeout(() => {
         if (G.selectedStage >= STAGES.length - 1) victory();
         else stageClear();
-      }, 2000);
+      }, 2100);
     }
   }
 
   function addExplosion(x, y, scale = 1) {
     G.explosions.push({ x, y, scale, life: 0, max: 0.45 });
-    G.shake = Math.max(G.shake, 6 * scale);
-    burstParticles(x, y, ["#ffd166", "#ff7714", "#ff3b30", "#ffffff"], 16 * scale, 260 * scale);
+    G.shake = Math.max(G.shake, 7 * scale);
+    burstParticles(x, y, ["#ff9100", "#ff3333", "#ffffff", "#444444"], 22 * scale, 280 * scale);
+    playExplosion(scale > 1);
   }
 
   function explodeArea(x, y, radius, damage, friendly) {
-    addExplosion(x, y, radius / 70);
-    sfx.explosion(radius > 70);
+    addExplosion(x, y, radius / 75);
 
     if (friendly) {
       for (const e of G.enemies) {
-        if (!e.dead && Math.hypot(e.x - x, (e.y - 20) - y) < radius + e.w / 2) {
+        if (!e.dead && Math.hypot(e.x - x, (e.y - 22) - y) < radius + e.w / 2) {
           damageEnemy(e, damage);
         }
       }
@@ -1697,7 +1759,7 @@
       }
     } else {
       for (const p of G.players) {
-        if (p.alive && Math.hypot(p.x - x, (p.y - 20) - y) < radius) {
+        if (p.alive && Math.hypot(p.x - x, (p.y - 22) - y) < radius) {
           hurtPlayer(p, damage);
         }
       }
@@ -1705,35 +1767,55 @@
   }
 
   function dropCrateReward(x, y) {
-    burstParticles(x, y, ["#8b5a2b", "#cd853f", "#ffd166"], 14, 180);
-    const types = ["hmg", "shotgun", "rocket", "flame", "laser", "bomb", "meat"];
+    burstParticles(x, y, ["#8c6538", "#c49a64", "#ffbe3b"], 16, 200);
+    const types = ["m4", "shotgun", "barrett", "saw", "rpg", "medkit"];
     const chosen = types[Math.floor(Math.random() * types.length)];
-    G.pickups.push({ x, y, type: chosen, life: 18, bob: 0 });
-    addText(x, y - 20, "CRATE OPEN", "#ffd166");
+    G.pickups.push({ x, y, type: chosen, life: 20, bob: 0 });
+    addText(x, y - 24, "SUPPLY CRATE OPENED", "#ffbe3b");
+  }
+
+  function burstBlood(x, y, count) {
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const spd = rand(40, 220);
+      G.particles.push({
+        x, y,
+        vx: Math.cos(angle) * spd,
+        vy: Math.sin(angle) * spd - rand(20, 80),
+        size: rand(2.5, 5),
+        color: Math.random() < 0.6 ? "#b30000" : "#800000",
+        life: 0,
+        max: rand(0.3, 0.7)
+      });
+    }
+    // Leave blood decal on ground
+    if (G.bloodDecals.length < 50) {
+      G.bloodDecals.push({ x: x + rand(-15, 15), y: GROUND_Y + rand(-2, 4), r: rand(4, 10) });
+    }
   }
 
   function burstParticles(x, y, colors, count, speed) {
     for (let i = 0; i < count; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const spd = rand(speed * 0.3, speed);
+      const spd = rand(speed * 0.25, speed);
       G.particles.push({
         x, y,
         vx: Math.cos(angle) * spd,
-        vy: Math.sin(angle) * spd - rand(40, 140),
-        size: rand(2, 5),
+        vy: Math.sin(angle) * spd - rand(30, 150),
+        size: rand(2, 6),
         color: colors[Math.floor(Math.random() * colors.length)],
         life: 0,
-        max: rand(0.3, 0.7)
+        max: rand(0.35, 0.75)
       });
     }
   }
 
-  function addText(x, y, text, color = "#ffd166") {
-    G.texts.push({ x, y, text, color, life: 0, max: 0.9 });
+  function addText(x, y, text, color = "#ffbe3b") {
+    G.texts.push({ x, y, text, color, life: 0, max: 0.95 });
   }
 
   /* ============================================================
-     7. MAIN UPDATE LOOP
+     7. MAIN SIMULATION UPDATE
      ============================================================ */
   function update(dt) {
     G.time += dt;
@@ -1743,8 +1825,6 @@
     }
 
     const curStage = STAGES[G.selectedStage];
-
-    // Poll Gamepads
     pollGamepads();
 
     // 1. Update Players
@@ -1764,7 +1844,6 @@
       p.hurtFlash = Math.max(0, p.hurtFlash - dt);
       p.muzzleFlash = Math.max(0, p.muzzleFlash - dt);
 
-      // Handle Keys for P1 and P2
       const isP1 = p.id === 1;
       const kLeft = isP1 ? keys.has(P1_KEYS.left) : (keys.has(P2_KEYS.left) || keys.has("KeyA"));
       const kRight = isP1 ? keys.has(P1_KEYS.right) : (keys.has(P2_KEYS.right) || keys.has("KeyD"));
@@ -1774,7 +1853,6 @@
       const kJump = isP1 ? (keys.has(P1_KEYS.jump) || keys.has(P1_KEYS.jumpAlt)) : (keys.has(P2_KEYS.jump) || keys.has(P2_KEYS.jumpAlt));
       const kBomb = isP1 ? keys.has(P1_KEYS.bomb) : (keys.has(P2_KEYS.bomb) || keys.has(P2_KEYS.bombAlt));
 
-      // Merge with touch controls for P1
       const left = kLeft || (isP1 && touchState.left);
       const right = kRight || (isP1 && touchState.right);
       const up = kUp || (isP1 && touchState.up);
@@ -1783,55 +1861,51 @@
       const jump = kJump || (isP1 && touchState.jump);
       const bomb = kBomb || (isP1 && touchState.bomb);
 
-      p.crouch = down && p.onGround && !p.inSlug;
+      p.crouch = down && p.onGround && !p.inTank;
       p.aimUp = up && !p.crouch;
 
       let move = 0;
       if (left) { move -= 1; p.facing = -1; }
       if (right) { move += 1; p.facing = 1; }
-      p.vx = move * (p.crouch ? 90 : 260);
+      p.vx = move * (p.crouch ? 95 : 265);
 
       if (jump && p.onGround) playerJump(p);
       if (shoot) tryShoot(p);
       if (bomb) tryThrowBomb(p);
 
-      // Check enter nearby empty SV-001 Slug Tank
-      if (!p.inSlug) {
-        for (const slug of G.slugs) {
-          if (!slug.driver && Math.abs(slug.x - p.x) < 48 && p.onGround) {
+      // Mount Bradley Tank
+      if (!p.inTank) {
+        for (const tank of G.tanks) {
+          if (!tank.driver && Math.abs(tank.x - p.x) < 52 && p.onGround) {
             if (up || jump) {
-              slug.driver = p;
-              p.inSlug = slug;
-              addText(slug.x, slug.y - 70, "SLUG IN!", "#73d13d");
-              sfx.pickup();
+              tank.driver = p;
+              p.inTank = tank;
+              addText(tank.x, tank.y - 75, "TANK CREW MOUNTED!", "#48d660");
+              announce("Armored support active!");
               break;
             }
           }
         }
       } else {
-        // Synchronize player with Slug tank
-        const slug = p.inSlug;
-        slug.x = p.x;
-        slug.facing = p.facing;
-        slug.vx = p.vx;
-        // Check eject Slug
+        const tank = p.inTank;
+        tank.x = p.x;
+        tank.facing = p.facing;
+        tank.vx = p.vx;
         if (down && jump) {
-          slug.driver = null;
-          p.inSlug = null;
-          p.vy = -540;
+          tank.driver = null;
+          p.inTank = null;
+          p.vy = -560;
           p.onGround = false;
-          addText(p.x, p.y - 60, "SLUG OUT", "#ffd166");
-          sfx.jump();
+          addText(p.x, p.y - 65, "CREW DISMOUNTED", "#ffbe3b");
         }
       }
 
-      // Physics
+      // Physics & Grounding
       p.vy += GRAVITY * dt;
       p.x += p.vx * dt;
       const prevY = p.y;
       p.y += p.vy * dt;
 
-      // Platform & Ground collision
       p.onGround = false;
       if (p.y >= GROUND_Y) {
         p.y = GROUND_Y;
@@ -1848,33 +1922,32 @@
         }
       }
 
-      p.x = clamp(p.x, G.cameraX + 20, curStage.width - 20);
+      p.x = clamp(p.x, G.cameraX + 22, curStage.width - 22);
       p.anim += Math.abs(p.vx) > 1 ? dt * 14 : dt * 3;
     }
 
-    // Check all players dead
     const anyAlive = G.players.some((p) => p.alive || p.lives > 0);
     if (!anyAlive && G.phase === "playing") {
-      setTimeout(gameOver, 1200);
+      setTimeout(gameOver, 1300);
     }
 
     // 2. Enemy Spawning & Logic
     const viewRight = G.cameraX + VIEW_W;
     for (const s of curStage.spawns) {
-      if (!G.spawnedSet.has(s) && s.x < viewRight + 100 && s.x > G.cameraX - 100) {
+      if (!G.spawnedSet.has(s) && s.x < viewRight + 120 && s.x > G.cameraX - 100) {
         G.spawnedSet.add(s);
         G.enemies.push(createEnemy(s.x, s.type));
       }
     }
 
-    // Boss Spawn Check
-    if (!G.bossSpawned && G.players.some((p) => p.x > curStage.width - 900)) {
+    // Boss Spawn Trigger
+    if (!G.bossSpawned && G.players.some((p) => p.x > curStage.width - 920)) {
       G.bossSpawned = true;
       const bDef = curStage.boss;
       G.boss = {
         name: bDef.name,
         type: bDef.type,
-        x: curStage.width - 340,
+        x: curStage.width - 360,
         y: bDef.type === "heli_boss" ? 170 : GROUND_Y,
         w: bDef.w, h: bDef.h,
         hp: bDef.hp, maxHp: bDef.hp,
@@ -1883,18 +1956,17 @@
         attackTimer: 2.0,
         anim: 0
       };
-      G.banner = { title: "WARNING!", sub: bDef.name + " APPROACHING", timer: 3.0 };
-      sfx.alarm();
+      G.banner = { title: "PRIORITY TARGET ACQUIRED", sub: bDef.name, timer: 3.4 };
+      announce("Warning! Heavy enemy war machine approaching!");
     }
 
-    // Update Enemies
+    // Enemies update
     for (const e of G.enemies) {
       if (e.dead) continue;
       e.hitFlash = Math.max(0, e.hitFlash - dt);
       e.shootCd -= dt;
       e.anim += dt * 8;
 
-      // Find nearest alive player
       const target = G.players.filter((p) => p.alive).sort((a, b) => Math.abs(a.x - e.x) - Math.abs(b.x - e.x))[0];
       if (!target) continue;
 
@@ -1902,19 +1974,17 @@
       e.facing = target.x < e.x ? -1 : 1;
 
       if (e.isFlying) {
-        // Helicopter AI
-        e.x += Math.sin(e.anim * 0.4) * 80 * dt;
-        if (e.shootCd <= 0 && dist < 650) {
+        e.x += Math.sin(e.anim * 0.4) * 85 * dt;
+        if (e.shootCd <= 0 && dist < 660) {
           G.bullets.push({
-            x: e.x, y: e.y + 14,
-            vx: (target.x - e.x) * 0.8, vy: 340,
-            damage: 1, friendly: false, color: "#ff3b30", size: 3.5
+            x: e.x, y: e.y + 16,
+            vx: (target.x - e.x) * 0.85, vy: 350,
+            damage: 1, friendly: false, color: "#ff3333", tracerLen: 16, tracerWidth: 3
           });
-          e.shootCd = 1.9;
-          sfx.enemyShoot();
+          e.shootCd = 1.8;
+          playGunCrack(1200, 120, 0.08, 0.1);
         }
       } else {
-        // Ground troops AI
         const def = ENEMY_DEFS[e.type];
         if (e.type === "knife") {
           e.vx = e.facing * def.speed;
@@ -1925,30 +1995,35 @@
         }
         e.x += e.vx * dt;
 
-        // Shoot at player
         if (e.shootCd <= 0 && dist < def.range + 80) {
           e.shootCd = def.fireRate + rand(-0.2, 0.4);
-          if (e.type === "bazooka") {
+          if (e.type === "rpg_enemy") {
             G.bullets.push({
-              x: e.x + e.facing * 18, y: e.y - 32,
-              vx: e.facing * 440, vy: -30,
-              damage: 1, friendly: false, rocket: true, radius: 55, color: "#ff7714", size: 5
+              x: e.x + e.facing * 20, y: e.y - 34,
+              vx: e.facing * 460, vy: -20,
+              damage: 1, friendly: false, rocket: true, radius: 65, color: "#ff6600", tracerLen: 24, tracerWidth: 5
             });
-            sfx.shoot("rocket");
+            playGunCrack(600, 70, 0.14, 0.18);
+          } else if (e.type === "sniper") {
+            G.bullets.push({
+              x: e.x + e.facing * 22, y: e.y - 32,
+              vx: e.facing * 1400, vy: 0,
+              damage: 2, friendly: false, color: "#ff1a1a", tracerLen: 36, tracerWidth: 3.5
+            });
+            playGunCrack(700, 60, 0.2, 0.22);
           } else if (e.type !== "knife") {
             G.bullets.push({
-              x: e.x + e.facing * 16, y: e.y - 28,
-              vx: e.facing * 380, vy: 0,
-              damage: 1, friendly: false, color: "#ff4d4f", size: 3
+              x: e.x + e.facing * 18, y: e.y - 30,
+              vx: e.facing * 420, vy: 0,
+              damage: 1, friendly: false, color: "#ff5252", tracerLen: 16, tracerWidth: 2.5
             });
-            sfx.enemyShoot();
+            playGunCrack(1000, 100, 0.07, 0.09);
           }
         }
 
-        // Contact damage with player
         const hb = { x: e.x - e.w / 2, y: e.y - e.h, w: e.w, h: e.h };
         for (const p of G.players) {
-          if (p.alive && aabb(hb.x, hb.y, hb.w, hb.h, p.x - 14, p.y - 44, 28, 44)) {
+          if (p.alive && aabb(hb.x, hb.y, hb.w, hb.h, p.x - 14, p.y - 46, 28, 46)) {
             hurtPlayer(p, 1);
           }
         }
@@ -1956,7 +2031,7 @@
     }
     G.enemies = G.enemies.filter((e) => !e.dead);
 
-    // Update Boss AI
+    // Boss AI
     if (G.boss && !G.boss.dead) {
       const b = G.boss;
       b.anim += dt;
@@ -1967,26 +2042,25 @@
         b.y = 160 + Math.sin(b.anim * 1.5) * 45;
         b.x = curStage.width - 400 + Math.cos(b.anim * 0.8) * 160;
       } else {
-        b.x += Math.sin(b.anim * 0.7) * 40 * dt;
+        b.x += Math.sin(b.anim * 0.6) * 45 * dt;
       }
 
       if (b.attackTimer <= 0) {
-        b.attackTimer = 2.2;
-        // Boss Barrage
+        b.attackTimer = 2.4;
         const target = G.players.filter((p) => p.alive)[0];
         const tx = target ? target.x : b.x - 300;
         const angle = Math.atan2(GROUND_Y - b.y, tx - b.x);
 
         for (let i = -1; i <= 1; i++) {
           G.bullets.push({
-            x: b.x, y: b.y - 20,
-            vx: Math.cos(angle + i * 0.18) * 420,
-            vy: Math.sin(angle + i * 0.18) * 420,
-            damage: 1, friendly: false, rocket: true, radius: 60, color: "#ff7714", size: 6
+            x: b.x, y: b.y - 25,
+            vx: Math.cos(angle + i * 0.2) * 440,
+            vy: Math.sin(angle + i * 0.2) * 440,
+            damage: 1, friendly: false, rocket: true, radius: 70, color: "#ff6600", tracerLen: 28, tracerWidth: 6
           });
         }
-        sfx.tankCannon();
-        G.shake = 8;
+        playExplosion(true);
+        G.shake = 10;
       }
     }
 
@@ -1997,41 +2071,35 @@
       b.y += b.vy * dt;
       b.life = (b.life || 2) - dt;
 
-      if (b.life <= 0 || b.x < G.cameraX - 50 || b.x > G.cameraX + VIEW_W + 50 || b.y > GROUND_Y + 10) {
-        if (b.rocket || b.flame) explodeArea(b.x, Math.min(b.y, GROUND_Y), b.radius, b.damage, b.friendly);
+      if (b.life <= 0 || b.x < G.cameraX - 60 || b.x > G.cameraX + VIEW_W + 60 || b.y > GROUND_Y + 10) {
+        if (b.rocket) explodeArea(b.x, Math.min(b.y, GROUND_Y), b.radius, b.damage, b.friendly);
         G.bullets.splice(i, 1);
         continue;
       }
 
-      // Friendly bullet collisions
       if (b.friendly) {
         let hit = false;
-        // Hit Boss
-        if (G.boss && !G.boss.dead && aabb(b.x - b.size, b.y - b.size, b.size*2, b.size*2, G.boss.x - G.boss.w/2, G.boss.y - G.boss.h, G.boss.w, G.boss.h)) {
+        if (G.boss && !G.boss.dead && aabb(b.x - 4, b.y - 4, 8, 8, G.boss.x - G.boss.w/2, G.boss.y - G.boss.h, G.boss.w, G.boss.h)) {
           damageBoss(b.damage);
           hit = true;
         }
-        // Hit Enemies
-        if (!hit) {
+        if (!hit || b.pierce) {
           for (const e of G.enemies) {
-            if (!e.dead && aabb(b.x - b.size, b.y - b.size, b.size*2, b.size*2, e.x - e.w/2, e.y - e.h, e.w, e.h)) {
-              // Check shield trooper facing
-              if (e.type === "shield" && !b.rocket && !b.flame && !b.laser) {
+            if (!e.dead && aabb(b.x - 4, b.y - 4, 8, 8, e.x - e.w/2, e.y - e.h, e.w, e.h)) {
+              if (e.type === "shield" && !b.rocket && !b.pierce) {
                 const facingHit = (b.vx > 0 && e.facing < 0) || (b.vx < 0 && e.facing > 0);
                 if (facingHit) {
-                  sfx.hit();
-                  burstParticles(b.x, b.y, ["#ffd166", "#ffffff"], 4, 120);
+                  playGunCrack(1800, 200, 0.05, 0.05);
+                  burstParticles(b.x, b.y, ["#ffbe3b", "#ffffff"], 5, 140);
                   hit = true;
                   break;
                 }
               }
               damageEnemy(e, b.damage);
-              hit = true;
-              break;
+              if (!b.pierce) { hit = true; break; }
             }
           }
         }
-        // Hit Crates
         if (!hit) {
           for (const c of G.crates) {
             if (c.hp > 0 && aabb(b.x, b.y, 4, 4, c.x, c.y, c.w, c.h)) {
@@ -2042,14 +2110,13 @@
             }
           }
         }
-        if (hit) {
-          if (b.rocket || b.flame) explodeArea(b.x, b.y, b.radius, b.damage, true);
+        if (hit && !b.pierce) {
+          if (b.rocket) explodeArea(b.x, b.y, b.radius, b.damage, true);
           G.bullets.splice(i, 1);
         }
       } else {
-        // Enemy bullet collisions with players
         for (const p of G.players) {
-          if (p.alive && aabb(b.x, b.y, 4, 4, p.x - 14, p.y - 44, 28, 44)) {
+          if (p.alive && aabb(b.x, b.y, 4, 4, p.x - 14, p.y - 46, 28, 46)) {
             hurtPlayer(p, b.damage);
             if (b.rocket) explodeArea(b.x, b.y, b.radius, b.damage, false);
             G.bullets.splice(i, 1);
@@ -2059,7 +2126,24 @@
       }
     }
 
-    // 4. Update Grenades
+    // 4. Update Shell Casings (Physics bouncing)
+    for (let i = G.casings.length - 1; i >= 0; i--) {
+      const cs = G.casings[i];
+      cs.life -= dt;
+      cs.vy += GRAVITY * 0.7 * dt;
+      cs.x += cs.vx * dt;
+      cs.y += cs.vy * dt;
+      cs.rot += cs.vRot * dt;
+      if (cs.y >= GROUND_Y - 2) {
+        cs.y = GROUND_Y - 2;
+        cs.vy *= -0.3;
+        cs.vx *= 0.6;
+        cs.vRot *= 0.5;
+      }
+      if (cs.life <= 0) G.casings.splice(i, 1);
+    }
+
+    // 5. Update Grenades
     for (let i = G.grenades.length - 1; i >= 0; i--) {
       const g = G.grenades[i];
       g.fuse -= dt;
@@ -2072,25 +2156,23 @@
         g.vx *= 0.7;
       }
       if (g.fuse <= 0) {
-        explodeArea(g.x, g.y, 85, 6, true);
+        explodeArea(g.x, g.y, 90, 7, true);
         G.grenades.splice(i, 1);
       }
     }
 
-    // 5. Update POWs
+    // 6. Update Hostages / POWs
     for (const pow of G.pows) {
       pow.anim += dt * 4;
       if (!pow.rescued) {
         for (const p of G.players) {
-          if (p.alive && Math.abs(p.x - pow.x) < 32 && Math.abs(p.y - pow.y) < 30) {
+          if (p.alive && Math.abs(p.x - pow.x) < 34 && Math.abs(p.y - pow.y) < 32) {
             pow.rescued = true;
             pow.saluteTimer = 1.6;
             G.powsRescued += 1;
             G.score += 1000;
-            sfx.powRescue();
-            announce("Thank you!");
-            addText(pow.x, pow.y - 50, "THANK YOU! +1000", "#ffbe3b");
-            // Drop reward
+            announce("Hostage rescued! Thank you soldier!");
+            addText(pow.x, pow.y - 52, "HOSTAGE SECURED! +1000", "#48d660");
             const rw = pow.reward || "shotgun";
             G.pickups.push({ x: pow.x, y: pow.y - 20, type: rw, life: 20, bob: 0 });
             updateHud();
@@ -2100,11 +2182,11 @@
       } else if (pow.saluteTimer > 0) {
         pow.saluteTimer -= dt;
       } else {
-        pow.x += 160 * dt; // Run away safely!
+        pow.x += 170 * dt;
       }
     }
 
-    // 6. Update Pickups
+    // 7. Update Pickups
     for (let i = G.pickups.length - 1; i >= 0; i--) {
       const pk = G.pickups[i];
       pk.life -= dt;
@@ -2112,21 +2194,16 @@
       if (pk.life <= 0) { G.pickups.splice(i, 1); continue; }
       for (const p of G.players) {
         if (p.alive && Math.abs(p.x - pk.x) < 28 && Math.abs(p.y - pk.y) < 36) {
-          // Collect item
-          if (pk.type === "bomb") {
-            p.bombs += 10;
-            addText(p.x, p.y - 50, "+10 BOMBS", "#ffd166");
-          } else if (pk.type === "meat") {
+          if (pk.type === "medkit") {
             p.hp = p.maxHp;
-            addText(p.x, p.y - 50, "FULL HP!", "#52c41a");
+            addText(p.x, p.y - 50, "COMBAT MEDKIT (+FULL HP)", "#48d660");
           } else {
             p.weapon = pk.type;
             p.ammo = WEAPONS[pk.type].ammo;
             const wName = WEAPONS[pk.type].name;
-            addText(p.x, p.y - 50, wName, "#ffd166");
+            addText(p.x, p.y - 50, wName, "#ffbe3b");
             if (WEAPONS[pk.type].voice) announce(WEAPONS[pk.type].voice);
           }
-          sfx.pickup();
           updateHud();
           G.pickups.splice(i, 1);
           break;
@@ -2134,12 +2211,12 @@
       }
     }
 
-    // 7. Update Particles & Texts
+    // 8. Particles & Explosions
     for (let i = G.particles.length - 1; i >= 0; i--) {
       const pt = G.particles[i];
       pt.life += dt;
       if (pt.life >= pt.max) { G.particles.splice(i, 1); continue; }
-      pt.vy += GRAVITY * 0.5 * dt;
+      pt.vy += GRAVITY * 0.45 * dt;
       pt.x += pt.vx * dt;
       pt.y += pt.vy * dt;
     }
@@ -2151,25 +2228,25 @@
     for (let i = G.texts.length - 1; i >= 0; i--) {
       const tx = G.texts[i];
       tx.life += dt;
-      tx.y -= 40 * dt;
+      tx.y -= 38 * dt;
       if (tx.life >= tx.max) G.texts.splice(i, 1);
     }
 
-    // 8. Camera Tracking
+    // 9. Camera Tracking
     const alivePlayers = G.players.filter((p) => p.alive);
     if (alivePlayers.length > 0) {
       const avgX = alivePlayers.reduce((s, p) => s + p.x, 0) / alivePlayers.length;
       let targetCamX = avgX - VIEW_W * 0.4;
       if (G.boss) targetCamX = curStage.width - VIEW_W;
       targetCamX = clamp(targetCamX, 0, curStage.width - VIEW_W);
-      G.cameraX += (targetCamX - G.cameraX) * Math.min(1, dt * 6);
+      G.cameraX += (targetCamX - G.cameraX) * Math.min(1, dt * 6.5);
     }
 
-    G.shake = Math.max(0, G.shake - dt * 30);
+    G.shake = Math.max(0, G.shake - dt * 28);
   }
 
   /* ============================================================
-     8. RENDERING (PARALLAX, SPRITES, HUD, EFFECTS)
+     8. REALISTIC RENDERING SYSTEM (CANVAS2D HIGH DETAIL)
      ============================================================ */
   function render() {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -2180,75 +2257,86 @@
 
     ctx.save();
     if (G.shake > 0) {
-      ctx.translate(rand(-G.shake, G.shake) * 0.6, rand(-G.shake, G.shake) * 0.6);
+      ctx.translate(rand(-G.shake, G.shake) * 0.65, rand(-G.shake, G.shake) * 0.65);
     }
 
-    // 1. Sky & Sun Gradient
+    // 1. Sky Gradient & Atmospheric Lighting
     const sky = ctx.createLinearGradient(0, 0, 0, GROUND_Y);
     sky.addColorStop(0, th.skyTop);
     sky.addColorStop(1, th.skyBot);
     ctx.fillStyle = sky;
     ctx.fillRect(0, 0, VIEW_W, GROUND_Y);
 
-    // Sun / Moon
+    // Sun / Moon with glare
     ctx.fillStyle = th.sun;
     ctx.beginPath();
-    ctx.arc(750, 90, 42, 0, Math.PI * 2);
+    ctx.arc(760, 85, 38, 0, Math.PI * 2);
     ctx.fill();
 
-    // 2. Parallax Mountains
+    // 2. Parallax Mountain Ridges with realistic silhouettes
     const cam = G.cameraX;
     ctx.fillStyle = th.farMtn;
-    for (let x = -200; x < VIEW_W + 400; x += 180) {
-      const px = x - (cam * 0.15) % 180;
+    for (let x = -200; x < VIEW_W + 400; x += 190) {
+      const px = x - (cam * 0.16) % 190;
       ctx.beginPath();
       ctx.moveTo(px, GROUND_Y);
-      ctx.lineTo(px + 90, GROUND_Y - 140);
-      ctx.lineTo(px + 180, GROUND_Y);
+      ctx.lineTo(px + 95, GROUND_Y - 145);
+      ctx.lineTo(px + 190, GROUND_Y);
       ctx.fill();
     }
 
     ctx.fillStyle = th.midMtn;
-    for (let x = -200; x < VIEW_W + 400; x += 240) {
-      const px = x - (cam * 0.35) % 240;
+    for (let x = -200; x < VIEW_W + 400; x += 250) {
+      const px = x - (cam * 0.36) % 250;
       ctx.beginPath();
       ctx.moveTo(px, GROUND_Y);
-      ctx.lineTo(px + 120, GROUND_Y - 95);
-      ctx.lineTo(px + 240, GROUND_Y);
+      ctx.lineTo(px + 125, GROUND_Y - 100);
+      ctx.lineTo(px + 250, GROUND_Y);
       ctx.fill();
     }
 
-    // 3. Ground & Floor
+    // 3. Ground & Textured Soil
     ctx.fillStyle = th.ground;
     ctx.fillRect(0, GROUND_Y, VIEW_W, VIEW_H - GROUND_Y);
     ctx.fillStyle = th.groundTop;
-    ctx.fillRect(0, GROUND_Y, VIEW_W, 12);
-    ctx.fillStyle = "rgba(0,0,0,0.2)";
-    ctx.fillRect(0, GROUND_Y + 12, VIEW_W, 3);
+    ctx.fillRect(0, GROUND_Y, VIEW_W, 14);
+    ctx.fillStyle = "rgba(0,0,0,0.25)";
+    ctx.fillRect(0, GROUND_Y + 14, VIEW_W, 4);
 
-    // 4. Platforms
+    // Persistent Blood Decals on ground
+    for (const b of G.bloodDecals) {
+      const bx = b.x - cam;
+      if (bx > -20 && bx < VIEW_W + 20) {
+        ctx.fillStyle = "rgba(128, 0, 0, 0.75)";
+        ctx.beginPath();
+        ctx.ellipse(bx, b.y, b.r, b.r * 0.35, 0, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // 4. Platforms & Tactical Sandbag Bunkers
     for (const pl of curStage.platforms) {
       const sx = pl.x - cam;
       if (sx < -pl.w || sx > VIEW_W) continue;
-      // Stilt legs
-      ctx.fillStyle = "rgba(0,0,0,0.3)";
-      ctx.fillRect(sx + 10, pl.y, 6, GROUND_Y - pl.y);
-      ctx.fillRect(sx + pl.w - 16, pl.y, 6, GROUND_Y - pl.y);
-      // Platform body
-      ctx.fillStyle = "#5c4028";
-      ctx.fillRect(sx, pl.y, pl.w, 14);
-      ctx.fillStyle = "#8c6239";
+      // Reinforced steel stilt supports
+      ctx.fillStyle = "rgba(10, 15, 20, 0.7)";
+      ctx.fillRect(sx + 12, pl.y, 8, GROUND_Y - pl.y);
+      ctx.fillRect(sx + pl.w - 20, pl.y, 8, GROUND_Y - pl.y);
+      // Platform decking
+      ctx.fillStyle = th.platformColor;
+      ctx.fillRect(sx, pl.y, pl.w, 15);
+      ctx.fillStyle = "rgba(255,255,255,0.12)";
       ctx.fillRect(sx, pl.y, pl.w, 4);
     }
 
-    // 5. Crates
+    // 5. Supply Crates
     for (const c of G.crates) {
       if (c.hp <= 0) continue;
       const sx = c.x - cam;
-      ctx.fillStyle = "#855325";
+      ctx.fillStyle = "#5c4026";
       ctx.fillRect(sx, c.y, c.w, c.h);
-      ctx.strokeStyle = "#40230b";
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = "#2e1e10";
+      ctx.lineWidth = 2.5;
       ctx.strokeRect(sx, c.y, c.w, c.h);
       ctx.beginPath();
       ctx.moveTo(sx, c.y); ctx.lineTo(sx + c.w, c.y + c.h);
@@ -2256,68 +2344,113 @@
       ctx.stroke();
     }
 
-    // 6. SV-001 Metal Slug Tanks
-    for (const slug of G.slugs) {
-      drawSlugTank(slug);
+    // 6. Realistic M2 Bradley Combat Tanks
+    for (const tank of G.tanks) {
+      drawBradleyTank(tank);
     }
 
-    // 7. POWs
+    // 7. Hostages
     for (const pow of G.pows) {
-      drawPow(pow);
+      drawHostage(pow);
     }
 
-    // 8. Enemies
+    // 8. Real Enemies
     for (const e of G.enemies) {
-      if (!e.dead) drawEnemy(e);
+      if (!e.dead) drawRealEnemy(e);
     }
 
-    // 9. Boss
+    // 9. Boss War Machine
     if (G.boss && !G.boss.dead) {
-      drawBoss(G.boss);
+      drawBossWarMachine(G.boss);
     }
 
-    // 10. Players
+    // 10. Real Men Soldiers (Players)
     for (const p of G.players) {
-      if (p.alive) drawPlayer(p);
+      if (p.alive) drawRealSoldier(p);
     }
 
-    // 11. Pickups
+    // 11. Pickups & Supply Boxes
     for (const pk of G.pickups) {
-      drawPickup(pk);
+      drawPickupItem(pk);
     }
 
-    // 12. Bullets & Grenades
+    // 12. Ejected Brass Casings
+    for (const cs of G.casings) {
+      const cx = cs.x - cam;
+      ctx.save();
+      ctx.translate(cx, cs.y);
+      ctx.rotate(cs.rot);
+      if (cs.isShotgun) {
+        ctx.fillStyle = "#cc0000"; // Red 12-gauge plastic shell
+        ctx.fillRect(-3, -1.5, 6, 3);
+        ctx.fillStyle = "#ffd700"; // Gold brass base
+        ctx.fillRect(-3, -1.5, 2, 3);
+      } else {
+        ctx.fillStyle = "#ffcc33"; // Brass 5.56mm casing
+        ctx.fillRect(-2.5, -1, 5, 2);
+      }
+      ctx.restore();
+    }
+
+    // 13. Bullet Tracers & Grenades
     for (const b of G.bullets) {
       const bx = b.x - cam;
-      ctx.fillStyle = b.color;
-      ctx.beginPath();
-      ctx.arc(bx, b.y, b.size, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    for (const g of G.grenades) {
-      const gx = g.x - cam;
-      ctx.fillStyle = "#2b3b2b";
-      ctx.beginPath();
-      ctx.arc(gx, g.y, 5, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = "#ff4d4f";
-      ctx.fillRect(gx - 2, g.y - 7, 4, 3);
+      const angle = Math.atan2(b.vy, b.vx);
+      const len = b.tracerLen || 18;
+      const wid = b.tracerWidth || 3;
+
+      ctx.save();
+      ctx.translate(bx, b.y);
+      ctx.rotate(angle);
+
+      if (b.rocket) {
+        // RPG-7 Rocket with smoke trail and glowing flame
+        ctx.fillStyle = "#556b2f";
+        ctx.fillRect(-10, -3, 20, 6);
+        ctx.fillStyle = "#ff4500";
+        ctx.beginPath();
+        ctx.moveTo(-10, -3); ctx.lineTo(-20, 0); ctx.lineTo(-10, 3);
+        ctx.fill();
+      } else {
+        // High-velocity glowing supersonic tracer
+        const grad = ctx.createLinearGradient(-len, 0, 0, 0);
+        grad.addColorStop(0, "rgba(255, 255, 255, 0)");
+        grad.addColorStop(0.7, b.color);
+        grad.addColorStop(1, "#ffffff");
+        ctx.fillStyle = grad;
+        ctx.fillRect(-len, -wid/2, len, wid);
+      }
+      ctx.restore();
     }
 
-    // 13. Explosions & Particles
+    for (const g of G.grenades) {
+      const gx = g.x - cam;
+      ctx.fillStyle = "#3b473b"; // M67 Olive Drab
+      ctx.beginPath();
+      ctx.arc(gx, g.y, 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#222";
+      ctx.fillRect(gx - 2, g.y - 8, 4, 3);
+    }
+
+    // 14. Explosions & Particles
     for (const ex of G.explosions) {
       const progress = ex.life / ex.max;
-      const r = 32 * ex.scale * (1 + progress * 0.8);
+      const r = 36 * ex.scale * (1 + progress * 0.9);
       const exX = ex.x - cam;
       ctx.save();
       ctx.globalAlpha = 1 - progress;
-      ctx.fillStyle = "#ffd166";
+      ctx.fillStyle = "#ff9900";
       ctx.beginPath();
       ctx.arc(exX, ex.y, r, 0, Math.PI * 2);
       ctx.fill();
-      ctx.fillStyle = "#ff7714";
+      ctx.fillStyle = "#ff3300";
       ctx.beginPath();
       ctx.arc(exX, ex.y, r * 0.65, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#ffffff";
+      ctx.beginPath();
+      ctx.arc(exX, ex.y, r * 0.35, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
     }
@@ -2329,7 +2462,7 @@
     }
     ctx.globalAlpha = 1;
 
-    // 14. Floating Texts
+    // 15. Combat Floating HUD Texts
     ctx.font = '800 12px monospace';
     ctx.textAlign = "center";
     for (const tx of G.texts) {
@@ -2339,129 +2472,237 @@
 
     ctx.restore();
 
-    // 15. In-Game Banner & Boss Bar
+    // 16. In-Game Banners & Boss Health Gauge
     if (G.banner) {
       ctx.save();
-      ctx.fillStyle = "rgba(0,0,0,0.7)";
-      ctx.fillRect(0, 140, VIEW_W, 64);
+      ctx.fillStyle = "rgba(7, 10, 14, 0.85)";
+      ctx.fillRect(0, 135, VIEW_W, 70);
       ctx.fillStyle = "var(--gold)";
-      ctx.fillRect(0, 140, VIEW_W, 3);
-      ctx.fillRect(0, 201, VIEW_W, 3);
-      ctx.font = '28px "Bungee", Impact, sans-serif';
+      ctx.fillRect(0, 135, VIEW_W, 3);
+      ctx.fillRect(0, 202, VIEW_W, 3);
+      ctx.font = '700 28px "Chakra Petch", sans-serif';
       ctx.textAlign = "center";
-      ctx.fillStyle = "#ffc038";
-      ctx.fillText(G.banner.title, VIEW_W / 2, 172);
-      ctx.font = '11px "Rubik", sans-serif';
-      ctx.fillStyle = "#fff";
-      ctx.fillText(G.banner.sub, VIEW_W / 2, 192);
+      ctx.fillStyle = "#ffbe3b";
+      ctx.fillText(G.banner.title, VIEW_W / 2, 168);
+      ctx.font = '700 12px "Rajdhani", sans-serif';
+      ctx.fillStyle = "#ffffff";
+      ctx.fillText(G.banner.sub, VIEW_W / 2, 190);
       ctx.restore();
     }
 
     if (G.boss && !G.boss.dead) {
       const b = G.boss;
-      const barW = 440;
+      const barW = 460;
       const barX = (VIEW_W - barW) / 2;
-      ctx.fillStyle = "rgba(0,0,0,0.6)";
-      ctx.fillRect(barX - 4, 16, barW + 8, 22);
-      ctx.fillStyle = "rgba(255,255,255,0.15)";
-      ctx.fillRect(barX, 20, barW, 14);
+      ctx.fillStyle = "rgba(10, 15, 20, 0.85)";
+      ctx.fillRect(barX - 6, 14, barW + 12, 26);
+      ctx.fillStyle = "rgba(255,255,255,0.14)";
+      ctx.fillRect(barX, 19, barW, 16);
       const pct = clamp(b.hp / b.maxHp, 0, 1);
-      ctx.fillStyle = pct < 0.25 ? "#ff3b30" : "#ff9436";
-      ctx.fillRect(barX, 20, barW * pct, 14);
-      ctx.font = '800 10px monospace';
+      ctx.fillStyle = pct < 0.25 ? "#ff3333" : "#ff9900";
+      ctx.fillRect(barX, 19, barW * pct, 16);
+      ctx.font = '800 11px monospace';
       ctx.fillStyle = "#fff";
       ctx.textAlign = "left";
-      ctx.fillText(b.name, barX + 6, 31);
+      ctx.fillText(b.name, barX + 8, 32);
     }
   }
 
-  /* ---------------- Custom Sprite Drawers ---------------- */
-  function drawPlayer(p) {
+  /* ============================================================
+     9. DETAILED "REAL MAN" SOLDIER & ENEMY SPRITE DRAWING
+     ============================================================ */
+
+  /* Realistic Soldier (Player 1 & 2) */
+  function drawRealSoldier(p) {
     if (p.invuln > 0 && Math.floor(G.time * 18) % 2 === 0) return;
     const x = p.x - G.cameraX;
     const y = p.y;
-    const c = p.color;
+    const isP1 = p.type === "stone";
 
     ctx.save();
     ctx.translate(x, y);
     ctx.scale(p.facing, 1);
 
-    const bob = p.crouch ? 12 : Math.sin(p.anim) * 2;
+    const bob = p.crouch ? 14 : Math.sin(p.anim) * 2.5;
+    const legSwing = Math.sin(p.anim) * 5;
 
-    // Legs
-    ctx.fillStyle = c.pants;
-    ctx.fillRect(-8, -16 + bob, 6, 16 - bob);
-    ctx.fillRect(2, -16 + bob, 6, 16 - bob);
+    // 1. Shadow on ground
+    ctx.fillStyle = "rgba(0,0,0,0.4)";
+    ctx.beginPath();
+    ctx.ellipse(0, 1, 16, 5, 0, 0, Math.PI * 2);
+    ctx.fill();
 
-    // Torso & Vest
-    ctx.fillStyle = c.shirt;
-    ctx.fillRect(-9, -34 + bob, 18, 18);
-    ctx.fillStyle = c.vest;
-    ctx.fillRect(-10, -34 + bob, 5, 18);
-    ctx.fillRect(5, -34 + bob, 5, 18);
+    // 2. Tactical Combat Boots & Legs
+    // Left leg
+    ctx.fillStyle = isP1 ? "#3b4d3b" : "#2d333b"; // Multicam vs Stealth Grey
+    ctx.fillRect(-8 + legSwing, -18 + bob, 7, 18 - bob);
+    ctx.fillStyle = "#111"; // Black boot
+    ctx.fillRect(-10 + legSwing, -4, 10, 5);
 
-    // Head & Hair & Bandana
-    ctx.fillStyle = "#ffd1a4"; // Skin
-    ctx.fillRect(-7, -46 + bob, 14, 12);
-    ctx.fillStyle = c.hair;
-    ctx.fillRect(-8, -50 + bob, 16, 6);
-    ctx.fillStyle = c.band;
-    ctx.fillRect(-8, -45 + bob, 16, 4);
+    // Right leg
+    ctx.fillStyle = isP1 ? "#334433" : "#252b33";
+    ctx.fillRect(2 - legSwing, -18 + bob, 7, 18 - bob);
+    ctx.fillStyle = "#111";
+    ctx.fillRect(0 - legSwing, -4, 10, 5);
 
-    // Bandana flutter tail
-    ctx.fillRect(-14, -45 + bob + Math.sin(p.anim * 2) * 2, 6, 3);
+    // Hard-shell tactical kneepads
+    ctx.fillStyle = "#1c1e21";
+    ctx.fillRect(-8 + legSwing, -12 + bob, 6, 6);
+    ctx.fillRect(2 - legSwing, -12 + bob, 6, 6);
 
-    // Arm & Gun
-    ctx.fillStyle = "#222";
+    // 3. Torso & Heavy Plate Carrier Body Armor
+    // Base tactical shirt
+    ctx.fillStyle = isP1 ? "#4a5d4a" : "#1e2229";
+    ctx.fillRect(-10, -36 + bob, 20, 20);
+
+    // Plate Carrier with MOLLE webbing
+    ctx.fillStyle = isP1 ? "#303d30" : "#14171c";
+    ctx.fillRect(-9, -36 + bob, 18, 18);
+    // MOLLE mag pouches
+    ctx.fillStyle = isP1 ? "#242e24" : "#0d0f12";
+    ctx.fillRect(-8, -26 + bob, 5, 8);
+    ctx.fillRect(-2, -26 + bob, 5, 8);
+    ctx.fillRect(4, -26 + bob, 5, 8);
+
+    // 4. Realistic Head, Helmet & Face
+    // Neck & Head
+    ctx.fillStyle = "#d49a6a"; // Masculine skin tone
+    ctx.fillRect(-6, -46 + bob, 12, 12);
+
+    if (isP1) {
+      // SGT. STONE: Rugged jawline, beard stubble, ballistic helmet with NVG mount
+      ctx.fillStyle = "#5c4028"; // Stubble / beard
+      ctx.fillRect(-6, -40 + bob, 12, 6);
+
+      // FAST Ballistic Helmet
+      ctx.fillStyle = "#384738";
+      ctx.fillRect(-8, -50 + bob, 16, 8);
+      // Goggles strapped above forehead
+      ctx.fillStyle = "#111";
+      ctx.fillRect(-7, -46 + bob, 14, 4);
+      ctx.fillStyle = "#38a2ff"; // Goggle lens reflection
+      ctx.fillRect(-6, -45 + bob, 5, 2);
+      ctx.fillRect(1, -45 + bob, 5, 2);
+    } else {
+      // CPT. VANCE: Skull Balaclava / Face Mask & Tactical Cap
+      ctx.fillStyle = "#14171c"; // Dark balaclava
+      ctx.fillRect(-7, -46 + bob, 14, 12);
+      ctx.fillStyle = "#ffffff"; // Skull teeth print
+      ctx.fillRect(-4, -39 + bob, 8, 3);
+
+      // Tactical baseball cap & comms headset
+      ctx.fillStyle = "#222";
+      ctx.fillRect(-8, -50 + bob, 17, 6);
+      ctx.fillRect(0, -48 + bob, 11, 3); // Cap brim
+      // Headset
+      ctx.fillStyle = "#00e676"; // Comms light
+      ctx.fillRect(-7, -44 + bob, 2, 2);
+    }
+
+    // 5. Arms & Realistic Weapon Handling
+    const recoil = p.recoil || 0;
+    const w = WEAPONS[p.weapon] || WEAPONS.m4;
+
+    ctx.save();
+    // Two-handed firearm grip
     if (p.aimUp) {
-      ctx.fillRect(2, -58 + bob, 6, 20);
+      // Aiming upward
+      ctx.fillStyle = "#22262c";
+      ctx.fillRect(3, -64 + bob + recoil, 7, 26); // Barrel & receiver
+      // Foregrip hand
+      ctx.fillStyle = "#d49a6a";
+      ctx.fillRect(2, -50 + bob + recoil, 5, 7);
+
+      // Laser sight line
+      ctx.strokeStyle = "rgba(255, 0, 0, 0.4)";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(6, -64 + bob);
+      ctx.lineTo(6, -300);
+      ctx.stroke();
+
       if (p.muzzleFlash > 0) {
-        ctx.fillStyle = "#ffe066";
-        ctx.fillRect(3, -66 + bob, 4, 8);
+        ctx.fillStyle = "#ffea80";
+        ctx.fillRect(4, -74 + bob, 5, 10);
       }
     } else {
-      ctx.fillRect(6, -30 + bob, 18, 6);
+      // Aiming forward
+      ctx.fillStyle = "#1b1e22"; // Gun receiver
+      ctx.fillRect(8 - recoil, -32 + bob, 22, 7);
+      ctx.fillStyle = "#0d0f12"; // Barrel & muzzle brake
+      ctx.fillRect(30 - recoil, -31 + bob, 8, 4);
+      ctx.fillStyle = "#2d333b"; // Magazine
+      ctx.fillRect(16 - recoil, -25 + bob, 5, 7);
+
+      // Red tactical laser sight
+      ctx.strokeStyle = "rgba(255, 0, 0, 0.45)";
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(38 - recoil, -29 + bob);
+      ctx.lineTo(400, -29 + bob);
+      ctx.stroke();
+
+      // Hands holding weapon
+      ctx.fillStyle = "#d49a6a";
+      ctx.fillRect(10 - recoil, -30 + bob, 5, 5); // Trigger hand
+      ctx.fillRect(22 - recoil, -29 + bob, 5, 5); // Support hand on handguard
+
+      // Muzzle flash on firing
       if (p.muzzleFlash > 0) {
-        ctx.fillStyle = "#ffe066";
-        ctx.fillRect(24, -31 + bob, 8, 8);
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(38 - recoil, -32 + bob, 10, 6);
+        ctx.fillStyle = "#ffaa00";
+        ctx.beginPath();
+        ctx.moveTo(48 - recoil, -29 + bob);
+        ctx.lineTo(62 - recoil, -35 + bob);
+        ctx.lineTo(58 - recoil, -29 + bob);
+        ctx.lineTo(62 - recoil, -23 + bob);
+        ctx.closePath();
+        ctx.fill();
       }
     }
+    ctx.restore();
 
     ctx.restore();
   }
 
-  function drawSlugTank(slug) {
-    const x = slug.x - G.cameraX;
-    const y = slug.y;
+  /* Realistic M2 Bradley Combat Tank */
+  function drawBradleyTank(tank) {
+    const x = tank.x - G.cameraX;
+    const y = tank.y;
 
     ctx.save();
     ctx.translate(x, y);
-    ctx.scale(slug.facing, 1);
+    ctx.scale(tank.facing, 1);
 
-    // Tracks / Wheels
-    ctx.fillStyle = "#2d3748";
-    ctx.fillRect(-38, -18, 76, 18);
-    ctx.fillStyle = "#1a202c";
-    for (let i = -28; i <= 28; i += 18) {
+    // Treads with armored mud skirts
+    ctx.fillStyle = "#1e2226";
+    ctx.fillRect(-42, -18, 84, 18);
+    ctx.fillStyle = "#0c0e10";
+    for (let i = -32; i <= 32; i += 16) {
       ctx.beginPath();
       ctx.arc(i, -9, 7, 0, Math.PI * 2);
       ctx.fill();
     }
+    // Armored side skirt
+    ctx.fillStyle = tank.hitFlash > 0 ? "#ffffff" : "#455345";
+    ctx.fillRect(-40, -20, 80, 8);
 
-    // Armored Hull
-    ctx.fillStyle = slug.hitFlash > 0 ? "#ffffff" : "#4a5568";
-    ctx.fillRect(-32, -40, 64, 22);
+    // Chobham Armored Hull
+    ctx.fillStyle = tank.hitFlash > 0 ? "#ffffff" : "#3b473b";
+    ctx.fillRect(-36, -42, 72, 24);
 
-    // Turret & Twin Vulcan Cannon
-    ctx.fillStyle = "#2d3748";
-    ctx.fillRect(-18, -54, 36, 16);
-    ctx.fillStyle = "#1a202c";
-    ctx.fillRect(14, -48, 22, 6);
+    // Rotating Turret & 25mm Bushmaster Autocannon
+    ctx.fillStyle = "#2e382e";
+    ctx.fillRect(-20, -56, 40, 16);
+    ctx.fillStyle = "#1a1f1a";
+    ctx.fillRect(18, -50, 26, 5); // Main gun barrel
 
     ctx.restore();
   }
 
-  function drawPow(pow) {
+  /* Realistic Hostage / POW */
+  function drawHostage(pow) {
     const x = pow.x - G.cameraX;
     const y = pow.y;
 
@@ -2469,32 +2710,33 @@
     ctx.translate(x, y);
 
     if (!pow.rescued) {
-      // Bound sitting POW
-      ctx.fillStyle = "#ffd1a4";
-      ctx.fillRect(-6, -26, 12, 14);
-      // Blond flowing beard
-      ctx.fillStyle = "#ffbe3b";
-      ctx.fillRect(-8, -20, 16, 16);
-      // Ropes
-      ctx.strokeStyle = "#8c6239";
-      ctx.lineWidth = 2;
-      ctx.strokeRect(-8, -22, 16, 8);
+      // Bound military hostage with khaki pants & bare chest
+      ctx.fillStyle = "#d49a6a";
+      ctx.fillRect(-6, -28, 12, 14);
+      // Blonde bushy survival beard
+      ctx.fillStyle = "#e6b800";
+      ctx.fillRect(-8, -22, 16, 16);
+      // Heavy ropes
+      ctx.strokeStyle = "#8c6538";
+      ctx.lineWidth = 2.5;
+      ctx.strokeRect(-8, -24, 16, 8);
     } else {
-      // Rescued, jumping & saluting POW!
-      const jump = Math.abs(Math.sin(pow.anim * 2)) * 8;
-      ctx.fillStyle = "#ffd1a4";
-      ctx.fillRect(-6, -34 - jump, 12, 14);
-      ctx.fillStyle = "#ffbe3b";
-      ctx.fillRect(-8, -26 - jump, 16, 18);
-      // Saluting arm
-      ctx.fillStyle = "#ffd1a4";
-      ctx.fillRect(4, -36 - jump, 8, 4);
+      // Rescued, cheering & running to extraction
+      const jump = Math.abs(Math.sin(pow.anim * 2.5)) * 9;
+      ctx.fillStyle = "#d49a6a";
+      ctx.fillRect(-6, -36 - jump, 12, 14);
+      ctx.fillStyle = "#e6b800";
+      ctx.fillRect(-8, -28 - jump, 16, 18);
+      // Waving hands
+      ctx.fillStyle = "#d49a6a";
+      ctx.fillRect(4, -38 - jump, 8, 4);
     }
 
     ctx.restore();
   }
 
-  function drawEnemy(e) {
+  /* Realistic Enemy Troops */
+  function drawRealEnemy(e) {
     const x = e.x - G.cameraX;
     const y = e.y;
 
@@ -2503,99 +2745,128 @@
     ctx.scale(e.facing, 1);
 
     if (e.isFlying) {
-      // Flying Tara Helicopter
-      ctx.fillStyle = e.hitFlash > 0 ? "#fff" : "#2f4f2f";
-      ctx.fillRect(-24, -18, 48, 20);
-      // Tail & Rotors
-      ctx.fillRect(-44, -14, 22, 6);
+      // Mil Mi-24 Hind Gunship Helicopter
+      ctx.fillStyle = e.hitFlash > 0 ? "#ffffff" : "#2b3b2b";
+      ctx.fillRect(-28, -20, 56, 22);
+      ctx.fillStyle = "#1c261c";
+      ctx.fillRect(-52, -15, 24, 8); // Tail boom
       ctx.fillStyle = "#111";
-      ctx.fillRect(-36, -28, 72, 3); // Spinning rotor
+      ctx.fillRect(-44, -30, 88, 3); // Main rotor blur
+      ctx.fillStyle = "#00bcd4"; // Tinted cockpit glass
+      ctx.fillRect(12, -18, 14, 10);
       ctx.restore();
       return;
     }
 
-    // Rebel Soldier
-    ctx.fillStyle = e.hitFlash > 0 ? "#ffffff" : "#4a5a4a"; // Green-grey uniform
-    ctx.fillRect(-7, -32, 14, 18);
+    // Insurgent / Paramilitary Ground Troops
+    // Combat Boots & Camo Pants
+    ctx.fillStyle = "#2c2a26";
+    ctx.fillRect(-6, -16, 5, 16);
+    ctx.fillRect(1, -16, 5, 16);
 
-    // Steel Helmet
-    ctx.fillStyle = "#2c382c";
-    ctx.fillRect(-8, -44, 16, 8);
+    // Uniform & Tactical Vest
+    ctx.fillStyle = e.hitFlash > 0 ? "#ffffff" : "#404a38";
+    ctx.fillRect(-8, -34, 16, 18);
 
-    // Legs
-    ctx.fillStyle = "#333d33";
-    ctx.fillRect(-6, -14, 5, 14);
-    ctx.fillRect(1, -14, 5, 14);
+    // Head, Shemagh scarf or Ballistic Helmet
+    ctx.fillStyle = "#b58750";
+    ctx.fillRect(-6, -44, 12, 10);
 
-    // Weapon / Shield
     if (e.type === "shield") {
-      ctx.fillStyle = "#718096";
-      ctx.fillRect(8, -38, 8, 36); // Steel riot shield!
-      ctx.fillStyle = "#1a202c";
-      ctx.fillRect(9, -28, 6, 4); // Viewport slot
+      // Heavy Riot Shield Soldier
+      ctx.fillStyle = "#1a221a"; // Ballistic helmet
+      ctx.fillRect(-7, -46, 14, 6);
+      ctx.fillStyle = "#475259"; // Heavy curved ballistic shield
+      ctx.fillRect(8, -40, 8, 40);
+      ctx.fillStyle = "#0c1012";
+      ctx.fillRect(9, -32, 6, 4); // Viewport glass
+    } else if (e.type === "sniper") {
+      // Ghillie hooded sniper
+      ctx.fillStyle = "#2b3b24";
+      ctx.fillRect(-8, -48, 16, 14); // Ghillie hood
+      ctx.fillStyle = "#111"; // Barrett sniper rifle
+      ctx.fillRect(4, -28, 28, 4);
+      // Red laser targeting beam
+      ctx.strokeStyle = "rgba(255, 0, 0, 0.45)";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(32, -26);
+      ctx.lineTo(400, -26);
+      ctx.stroke();
     } else {
-      ctx.fillStyle = "#1a202c";
-      ctx.fillRect(4, -26, 16, 5); // Rifle / Bazooka
+      // AK-47 / RPG Gunner
+      ctx.fillStyle = "#8a3324"; // Shemagh headwrap
+      ctx.fillRect(-7, -46, 14, 6);
+      ctx.fillStyle = "#1c150c"; // AK-47 rifle
+      ctx.fillRect(4, -28, 18, 5);
+      ctx.fillStyle = "#804000"; // Curved wood mag
+      ctx.fillRect(10, -23, 4, 7);
     }
 
     ctx.restore();
   }
 
-  function drawBoss(b) {
+  /* Boss War Machines (Tetsuyuki, Iron Nokana, Hi-Do, Jupiter King) */
+  function drawBossWarMachine(b) {
     const x = b.x - G.cameraX;
     const y = b.y;
 
     ctx.save();
     ctx.translate(x, y);
 
-    ctx.fillStyle = b.hitFlash > 0 ? "#fff" : "#3b473b";
+    ctx.fillStyle = b.hitFlash > 0 ? "#ffffff" : "#2f382f";
     ctx.fillRect(-b.w/2, -b.h, b.w, b.h);
 
-    ctx.strokeStyle = "#1a201a";
+    ctx.strokeStyle = "#121712";
     ctx.lineWidth = 4;
     ctx.strokeRect(-b.w/2, -b.h, b.w, b.h);
 
-    // Glowing core / cockpit
-    ctx.fillStyle = "#ff3b30";
-    ctx.fillRect(-20, -b.h + 20, 40, 20);
+    // Reinforced armor plating bevels
+    ctx.fillStyle = "#222a22";
+    ctx.fillRect(-b.w/2 + 8, -b.h + 8, b.w - 16, b.h - 16);
+
+    // Glowing combat sensors
+    ctx.fillStyle = "#ff3300";
+    ctx.fillRect(-22, -b.h + 24, 44, 20);
 
     ctx.restore();
   }
 
-  function drawPickup(pk) {
+  /* Realistic Weapon Supply Cases */
+  function drawPickupItem(pk) {
     const x = pk.x - G.cameraX;
     const y = pk.y + Math.sin(pk.bob) * 3;
-    const colors = { hmg: "#ffd43b", shotgun: "#ff9f43", rocket: "#ff5e00", flame: "#ff3b30", laser: "#40a9ff", bomb: "#ffd166", meat: "#52c41a" };
-    const letters = { hmg: "H", shotgun: "S", rocket: "R", flame: "F", laser: "L", bomb: "B", meat: "+" };
+    const colors = { m4: "#ffbe3b", shotgun: "#ff9100", barrett: "#ffffff", saw: "#ffd633", rpg: "#ff6600", medkit: "#48d660" };
+    const labels = { m4: "M4", shotgun: "SG", barrett: "50", saw: "SAW", rpg: "RPG", medkit: "+" };
 
     ctx.save();
-    ctx.fillStyle = colors[pk.type] || "#ffd166";
-    ctx.fillRect(x - 12, y - 12, 24, 24);
-    ctx.strokeStyle = "#111";
+    ctx.fillStyle = colors[pk.type] || "#ffbe3b";
+    ctx.fillRect(x - 14, y - 12, 28, 24);
+    ctx.strokeStyle = "#000";
     ctx.lineWidth = 2;
-    ctx.strokeRect(x - 12, y - 12, 24, 24);
+    ctx.strokeRect(x - 14, y - 12, 28, 24);
 
-    ctx.font = '800 13px monospace';
-    ctx.fillStyle = "#111";
+    ctx.font = '800 12px monospace';
+    ctx.fillStyle = "#000";
     ctx.textAlign = "center";
-    ctx.fillText(letters[pk.type] || "?", x, y + 5);
+    ctx.fillText(labels[pk.type] || "?", x, y + 5);
     ctx.restore();
   }
 
   /* ============================================================
-     9. UI UPDATES & EVENTS
+     10. HUD UPDATES & BUTTON EVENT BINDINGS
      ============================================================ */
   function updateHud() {
     el.p1Score.textContent = String(G.score).padStart(5, "0");
-    el.hiScoreBadge.textContent = "HI: " + String(Math.max(G.score, G.hiScore));
-    el.powBadge.textContent = "\u2605 POW: " + G.powsRescued;
+    el.hiScoreBadge.textContent = "RECORD: " + String(Math.max(G.score, G.hiScore));
+    el.powBadge.textContent = "\u2605 HOSTAGES: " + G.powsRescued;
 
     const p1 = G.players[0];
     if (p1) {
       el.p1Hearts.textContent = "\u2665".repeat(p1.hp) + "\u2661".repeat(p1.maxHp - p1.hp);
       el.p1Lives.textContent = "\u00d7" + p1.lives;
-      el.p1Bombs.textContent = "B\u00d7" + p1.bombs;
-      el.p1Weapon.textContent = (WEAPONS[p1.weapon] ? WEAPONS[p1.weapon].name : "PISTOL") + (p1.ammo === Infinity ? " \u221e" : " " + p1.ammo);
+      el.p1Bombs.textContent = "M67 \u00d7" + p1.bombs;
+      el.p1Weapon.textContent = (WEAPONS[p1.weapon] ? WEAPONS[p1.weapon].name : "M4A1") + (p1.ammo === Infinity ? " \u221e" : " " + p1.ammo);
       el.p1Card.classList.toggle("dead", !p1.alive && p1.lives <= 0);
     }
 
@@ -2603,13 +2874,13 @@
       const p2 = G.players[1];
       el.p2Hearts.textContent = "\u2665".repeat(p2.hp) + "\u2661".repeat(p2.maxHp - p2.hp);
       el.p2Lives.textContent = "\u00d7" + p2.lives;
-      el.p2Bombs.textContent = "B\u00d7" + p2.bombs;
-      el.p2Weapon.textContent = (WEAPONS[p2.weapon] ? WEAPONS[p2.weapon].name : "PISTOL") + (p2.ammo === Infinity ? " \u221e" : " " + p2.ammo);
+      el.p2Bombs.textContent = "M67 \u00d7" + p2.bombs;
+      el.p2Weapon.textContent = (WEAPONS[p2.weapon] ? WEAPONS[p2.weapon].name : "M4A1") + (p2.ammo === Infinity ? " \u221e" : " " + p2.ammo);
       el.p2Card.classList.toggle("dead", !p2.alive && p2.lives <= 0);
     }
   }
 
-  // Button Listeners
+  // Event handlers
   el.btn1P.addEventListener("click", () => startCampaign(G.selectedStage, false));
   el.btn2P.addEventListener("click", () => startCampaign(G.selectedStage, true));
 
@@ -2640,18 +2911,16 @@
   el.scanlineBtn.addEventListener("click", toggleScanlines);
   el.touchToggleBtn.addEventListener("click", toggleTouchControls);
 
-  // Stage select chips
   document.querySelectorAll(".stage-opt-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".stage-opt-btn").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
       G.selectedStage = parseInt(btn.getAttribute("data-stage"), 10) || 0;
-      sfx.click();
     });
   });
 
   /* ============================================================
-     10. GAME LOOP
+     11. RUNTIME GAME LOOP
      ============================================================ */
   let lastTime = performance.now();
   function gameLoop(now) {
@@ -2666,7 +2935,7 @@
   }
 
   G.hiScore = loadHiScore();
-  el.hiScoreBadge.textContent = "HI: " + G.hiScore;
+  el.hiScoreBadge.textContent = "RECORD: " + G.hiScore;
   requestAnimationFrame(gameLoop);
 
 })();
