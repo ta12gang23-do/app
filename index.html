@@ -1413,6 +1413,9 @@
   let swipeStart = null;
   boardWrap.addEventListener("pointerdown", (event) => {
     if (event.pointerType === "mouse" && event.button !== 0) return;
+    // Don't capture pointers that start on a control. Capturing would
+    // retarget the follow-up click to the board, so buttons never fire.
+    if (event.target.closest && event.target.closest("button")) return;
     swipeStart = { x: event.clientX, y: event.clientY, id: event.pointerId };
     try {
       boardWrap.setPointerCapture(event.pointerId);
