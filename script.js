@@ -3,6 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("order-form");
   const status = document.getElementById("form-status");
 
+  const appConfig = {
+    supabaseUrl: window.SUPABASE_URL || "",
+    supabaseKey: window.SUPABASE_KEY || "",
+  };
+  window.app = {
+    config: appConfig,
+    supabaseReady: Boolean(appConfig.supabaseUrl && appConfig.supabaseKey),
+  };
+
   document.querySelectorAll("[data-product]").forEach((el) => {
     el.addEventListener("click", () => {
       const product = el.getAttribute("data-product");
