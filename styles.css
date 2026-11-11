@@ -287,6 +287,15 @@ h1 .accent { color: var(--accent); }
   color: var(--muted);
   background: rgba(0,0,0,0.3);
 }
+
+.products-page {
+  background:
+    linear-gradient(rgba(5,5,5,0.82), rgba(5,5,5,0.9)),
+    url("https://images.unsplash.com/photo-1515703407324-5f753afd8be8?auto=format&fit=crop&w=1920&q=80") center/cover fixed no-repeat;
+}
+.products-section {
+  background: transparent;
+}
 .footer-inner { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; }
 .footer-inner p { margin: 0.2rem 0; }
 .footer-inner strong { color: #fff; }
