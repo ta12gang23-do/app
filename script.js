@@ -12,6 +12,16 @@ document.addEventListener("DOMContentLoaded", () => {
     supabaseReady: Boolean(appConfig.supabaseUrl && appConfig.supabaseKey),
   };
 
+  const params = new URLSearchParams(window.location.search);
+  const preset = params.get("product");
+  if (preset && productSelect) {
+    const opt = Array.from(productSelect.options).find((o) => o.value === preset || o.text === preset);
+    if (opt) {
+      productSelect.value = opt.value;
+      if (status) status.textContent = `Selected: ${opt.value}`;
+    }
+  }
+
   document.querySelectorAll("[data-product]").forEach((el) => {
     el.addEventListener("click", () => {
       const product = el.getAttribute("data-product");
