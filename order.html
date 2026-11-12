@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Place Your Order | HockeyPro Store</title>
+  <meta name="description" content="Place a hockey gear order with HockeyPro Store. Choose your products, delivery method, and payment preference — we confirm every order personally." />
+  <link rel="canonical" href="https://app-seven-orpin-24.vercel.app/order" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Place Your Order | HockeyPro Store" />
+  <meta property="og:description" content="Choose your hockey gear, delivery method, and payment preference. We confirm every order personally — no online payment required." />
+  <meta property="og:url" content="https://app-seven-orpin-24.vercel.app/order" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="order-page">
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">Hockey<span>Pro</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="order.html" class="active">Order</a>
+      </nav>
+      <a class="btn btn-sm" href="#order">Order Now</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero order-hero">
+      <div class="hero-overlay"></div>
+      <div class="container hero-simple">
+        <p class="eyebrow">Secure Order Request</p>
+        <h1>Place Your <span class="accent">Order</span></h1>
+        <p class="lead">Choose your gear, confirm the details, and we will get back to you personally to finalize delivery and payment.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#order">Start Your Order</a>
+          <a class="btn btn-outline" href="products.html">Browse Products</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="shop-trust">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <span class="trust-icon">🚚</span>
+          <div>
+            <strong>Fast Delivery</strong>
+            <small>Nationwide dispatch</small>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">✅</span>
+          <div>
+            <strong>Quality Checked</strong>
+            <small>Every order inspected</small>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">💬</span>
+          <div>
+            <strong>Personal Confirmation</strong>
+            <small>We reply within a day</small>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">🔒</span>
+          <div>
+            <strong>No Online Payment</strong>
+            <small>Pay after confirmation</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="order" class="section order-page-section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Order Form</p>
+          <h2>Tell Us What You Need</h2>
+          <p>Complete the details below and we will confirm your order, delivery time, and payment method with you directly.</p>
+        </div>
+
+        <form id="order-form" class="order-page-form">
+          <div class="order-page-grid">
+            <div class="order-fields">
+              <div class="form-card">
+                <div class="form-card-head">
+                  <span class="form-step">01</span>
+                  <div>
+                    <h3>Contact Details</h3>
+                    <p>So we can confirm your order and delivery.</p>
+                  </div>
+                </div>
+                <div class="field-grid">
+                  <label>
+                    Full Name
+                    <input type="text" name="name" placeholder="Your name" required />
+                  </label>
+                  <label>
+                    Phone / WhatsApp
+                    <input type="tel" name="phone" placeholder="03xx-xxxxxxx" required />
+                  </label>
+                  <label>
+                    Email (optional)
+                    <input type="email" name="email" placeholder="you@example.com" />
+                  </label>
+                  <label>
+                    City
+                    <input type="text" name="city" placeholder="Your city" required />
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-card">
+                <div class="form-card-head">
+                  <span class="form-step">02</span>
+                  <div>
+                    <h3>Your Gear</h3>
+                    <p>Choose the product and quantity you want.</p>
+                  </div>
+                </div>
+                <div class="field-grid">
+                  <label class="span-2">
+                    Product
+                    <select name="product" id="product-select" required>
+                      <option value="">Choose a product</option>
+                      <option>Pro Carbon Hockey Stick</option>
+                      <option>Elite Carbon Hockey Stick</option>
+                      <option>Junior Hockey Stick</option>
+                      <option>Match Hockey Balls (Pack of 6)</option>
+                      <option>Match Hockey Balls (Pack of 12)</option>
+                      <option>Player Protective Gear</option>
+                      <option>Goalkeeper Kit Set</option>
+                      <option>Goalkeeper Helmet &amp; Gloves</option>
+                      <option>Hockey Turf Shoes</option>
+                      <option>Indoor Court Hockey Shoes</option>
+                      <option>Training Hockey Jersey</option>
+                      <option>Team Training Bibs (Set of 10)</option>
+                      <option>Hockey Kit Bag</option>
+                      <option>Pro Wheeled Kit Bag</option>
+                      <option>Pro Training Cones Set</option>
+                      <option>Agility Ladder &amp; Marker Set</option>
+                      <option>Premium Stick Grip &amp; Tape Kit</option>
+                    </select>
+                  </label>
+                  <label>
+                    Quantity
+                    <input type="number" name="quantity" id="quantity" min="1" value="1" required />
+                  </label>
+                  <label>
+                    Size / Preference (optional)
+                    <input type="text" name="size" placeholder="e.g. 36.5 stick, medium jersey" />
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-card">
+                <div class="form-card-head">
+                  <span class="form-step">03</span>
+                  <div>
+                    <h3>Delivery Details</h3>
+                    <p>Where should we send your gear?</p>
+                  </div>
+                </div>
+                <div class="field-grid">
+                  <label class="span-2">
+                    Delivery Address
+                    <textarea name="address" rows="3" placeholder="House / street, area, city" required></textarea>
+                  </label>
+                  <label class="span-2">
+                    Order Notes (optional)
+                    <textarea name="notes" rows="3" placeholder="Team name, delivery instructions, or anything else we should know"></textarea>
+                  </label>
+                </div>
+
+                <fieldset class="choice-fieldset">
+                  <legend>Delivery Method</legend>
+                  <div class="choice-group">
+                    <label class="choice">
+                      <input type="radio" name="delivery" value="standard" checked />
+                      <span class="choice-card">
+                        <span class="choice-title">Standard Delivery <small>3–5 working days</small></span>
+                        <span class="choice-price">Rs. 250</span>
+                      </span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="delivery" value="express" />
+                      <span class="choice-card">
+                        <span class="choice-title">Express Delivery <small>1–2 working days</small></span>
+                        <span class="choice-price">Rs. 600</span>
+                      </span>
+                    </label>
+                  </div>
+                  <p class="choice-note">Free standard delivery on orders over Rs. 10,000.</p>
+                </fieldset>
+              </div>
+
+              <div class="form-card">
+                <div class="form-card-head">
+                  <span class="form-step">04</span>
+                  <div>
+                    <h3>Payment Method</h3>
+                    <p>Choose how you would like to pay after confirmation.</p>
+                  </div>
+                </div>
+                <fieldset class="choice-fieldset">
+                  <legend>Payment Preference</legend>
+                  <div class="choice-group">
+                    <label class="choice">
+                      <input type="radio" name="payment" value="cod" checked />
+                      <span class="choice-card">
+                        <span class="choice-title">Cash on Delivery <small>Pay when your gear arrives</small></span>
+                        <span class="choice-badge">Most popular</span>
+                      </span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="payment" value="bank" />
+                      <span class="choice-card">
+                        <span class="choice-title">Bank Transfer <small>Details shared after confirmation</small></span>
+                        <span class="choice-badge">Secure</span>
+                      </span>
+                    </label>
+                  </div>
+                </fieldset>
+                <p class="form-note">🔒 No online payment required — we confirm availability, delivery, and payment details with you first.</p>
+              </div>
+            </div>
+
+            <aside class="order-side">
+              <div class="summary-card" id="order-summary">
+                <p class="eyebrow">Order Summary</p>
+                <h3>Your Selection</h3>
+                <div class="summary-product">
+                  <p class="summary-label">Product</p>
+                  <p class="summary-name" id="summary-product">Nothing selected yet</p>
+                </div>
+                <div class="summary-row">
+                  <span>Unit price</span>
+                  <span id="summary-unit">—</span>
+                </div>
+                <div class="summary-row">
+                  <span>Quantity</span>
+                  <span id="summary-qty">1</span>
+                </div>
+                <div class="summary-row">
+                  <span>Delivery</span>
+                  <span id="summary-delivery">—</span>
+                </div>
+                <div class="summary-row summary-total">
+                  <span>Total</span>
+                  <span id="summary-total">Rs. 0</span>
+                </div>
+                <button type="submit" class="btn btn-block">Submit Order Request</button>
+                <p class="summary-note">You will not be charged now. We confirm every order personally.</p>
+                <p id="form-status" class="form-status" aria-live="polite"></p>
+              </div>
+
+              <div class="summary-help">
+                <p class="eyebrow">Need Help?</p>
+                <h3>We’re One Message Away</h3>
+                <p>Not sure about sizing or which product to choose? Talk to our team before you order.</p>
+                <a class="btn btn-outline btn-block" href="https://wa.me/923001234567" target="_blank" rel="noopener">Chat on WhatsApp</a>
+                <a class="summary-contact" href="mailto:hello@hockeyprostore.com">hello@hockeyprostore.com</a>
+                <a class="summary-contact" href="tel:+923001234567">+92 300 1234567</a>
+              </div>
+            </aside>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">How Ordering Works</p>
+          <h2>From Request to Match Day</h2>
+          <p>A simple, personal process — no accounts, no online payment, no guesswork.</p>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <span class="step-num">01</span>
+            <h3>Send Your Request</h3>
+            <p>Choose your gear, add your delivery details, and submit the order form.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">02</span>
+            <h3>We Confirm Everything</h3>
+            <p>We check availability, confirm sizing, and agree on delivery and payment with you.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">03</span>
+            <h3>Gear on the Way</h3>
+            <p>Your order is packed, dispatched, and tracked until it reaches your door.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Common Questions</p>
+          <h2>Before You Order</h2>
+          <p>Quick answers to the things players ask us most.</p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>How do I place an order?<span class="faq-icon">+</span></summary>
+            <p>Fill in the order form above and submit it. We will contact you on WhatsApp or by phone to confirm the product, delivery address, and payment method. Your order is only confirmed after we speak with you.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How long does delivery take?<span class="faq-icon">+</span></summary>
+            <p>Standard delivery takes 3–5 working days and costs Rs. 250. Express delivery takes 1–2 working days and costs Rs. 600. Standard delivery is free on orders over Rs. 10,000.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What payment methods do you accept?<span class="faq-icon">+</span></summary>
+            <p>We offer cash on delivery and bank transfer. No online payment is taken on this page — we share the relevant details after confirming your order.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I order for a team or academy?<span class="faq-icon">+</span></summary>
+            <p>Yes. We regularly supply clubs, schools, and academies. Message us on WhatsApp with the items and quantities you need, and we will prepare a bulk quote for you.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I change or cancel my order?<span class="faq-icon">+</span></summary>
+            <p>Contact us as soon as possible after submitting your request. We can usually adjust or cancel an order before it is dispatched.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt shop-help">
+      <div class="container shop-help-inner">
+        <div>
+          <p class="eyebrow">Teams &amp; Academies</p>
+          <h2>Ordering for a Full Squad?</h2>
+          <p>Tell us what you need and we will put together a bulk quote with the right sizes, quantities, and delivery plan for your team.</p>
+        </div>
+        <div class="shop-help-actions">
+          <a class="btn" href="https://wa.me/923001234567" target="_blank" rel="noopener">WhatsApp for Bulk Pricing</a>
+          <a class="btn btn-outline" href="about.html#contact">Contact Details</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <p><strong>HockeyPro Store</strong> — Premium hockey gear for every player.</p>
+        <p class="footer-contact">
+          <a href="mailto:hello@hockeyprostore.com">hello@hockeyprostore.com</a>
+          <span>·</span>
+          <a href="tel:+923001234567">+92 300 1234567</a>
+        </p>
+      </div>
+      <p>© 2026 HockeyPro Store. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
