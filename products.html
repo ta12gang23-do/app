@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Products | HockeyPro Store</title>
-  <meta name="description" content="Browse premium hockey sticks, balls, kits, shoes, and protective gear at HockeyPro Store." />
+  <title>Shop Premium Hockey Gear | HockeyPro Store</title>
+  <meta name="description" content="Shop 17 premium hockey products — sticks, balls, protective gear, shoes, bags, teamwear, and training equipment at HockeyPro Store." />
+  <link rel="canonical" href="https://app-seven-orpin-24.vercel.app/products" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -30,20 +31,79 @@
       <div class="hero-overlay"></div>
       <div class="container hero-simple">
         <p class="eyebrow">Shop Collection</p>
-        <h1>Premium <span class="accent">Hockey</span> Products</h1>
-        <p class="lead">Explore our full range of high-quality hockey gear. Choose your favorites and place your order in minutes.</p>
+        <h1>Premium <span class="accent">Hockey</span> Gear</h1>
+        <p class="lead">17 carefully selected products for players who take the game seriously. Filter by category, find your fit, and order in minutes.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#collection">Browse the Collection</a>
+          <a class="btn btn-outline" href="about.html#contact">Get Advice</a>
+        </div>
       </div>
     </section>
 
-    <section class="section products-section">
+    <section class="shop-trust">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <span class="trust-icon">🚚</span>
+          <div>
+            <strong>Fast Delivery</strong>
+            <small>Nationwide dispatch</small>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">✅</span>
+          <div>
+            <strong>Quality Checked</strong>
+            <small>Every order inspected</small>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">💬</span>
+          <div>
+            <strong>Real Support</strong>
+            <small>Advice from players</small>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">🏆</span>
+          <div>
+            <strong>Trusted Gear</strong>
+            <small>For teams &amp; academies</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="collection" class="section products-section">
       <div class="container">
-        <div class="product-grid">
-          <article class="product-card">
+        <div class="section-head">
+          <p class="eyebrow">Full Collection</p>
+          <h2>Find Your Match-Day Setup</h2>
+          <p>From your first stick to a full team order — every product below is chosen for performance, durability, and value.</p>
+        </div>
+
+        <div class="shop-toolbar">
+          <div class="filter-chips" role="group" aria-label="Filter products by category">
+            <button type="button" class="filter-chip is-active" data-filter="all">All Gear</button>
+            <button type="button" class="filter-chip" data-filter="sticks">Sticks</button>
+            <button type="button" class="filter-chip" data-filter="balls">Balls</button>
+            <button type="button" class="filter-chip" data-filter="protective">Protective</button>
+            <button type="button" class="filter-chip" data-filter="footwear">Footwear</button>
+            <button type="button" class="filter-chip" data-filter="teamwear">Teamwear</button>
+            <button type="button" class="filter-chip" data-filter="bags">Bags</button>
+            <button type="button" class="filter-chip" data-filter="training">Training</button>
+            <button type="button" class="filter-chip" data-filter="accessories">Accessories</button>
+          </div>
+          <p class="product-count" id="product-count" aria-live="polite">17 products</p>
+        </div>
+
+        <div class="product-grid products-grid">
+          <article class="product-card" data-category="sticks">
             <div class="product-media">
               <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80" alt="Pro Carbon Hockey Stick" loading="lazy" />
               <span class="product-tag">Bestseller</span>
             </div>
             <div class="product-body">
+              <p class="product-cat">Sticks</p>
               <h3>Pro Carbon Hockey Stick</h3>
               <p>Lightweight carbon composite stick for speed, control, and powerful striking.</p>
               <div class="product-meta">
@@ -53,102 +113,29 @@
             </div>
           </article>
 
-          <article class="product-card">
+          <article class="product-card" data-category="sticks">
             <div class="product-media">
-              <img src="https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?auto=format&fit=crop&w=1200&q=80" alt="Goalkeeper Kit Set" loading="lazy" />
-              <span class="product-tag">Pro Kit</span>
+              <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80&sat=-15" alt="Elite Carbon Hockey Stick" loading="lazy" />
+              <span class="product-tag">Elite</span>
             </div>
             <div class="product-body">
-              <h3>Goalkeeper Kit Set</h3>
-              <p>Complete protection set with pads, gloves, and guards for confident goalkeeping.</p>
+              <p class="product-cat">Sticks</p>
+              <h3>Elite Carbon Hockey Stick</h3>
+              <p>High-carbon construction with a responsive touch for advanced, competitive players.</p>
               <div class="product-meta">
-                <span class="price">Rs. 12,500</span>
-                <a class="link-btn" href="index.html?product=Goalkeeper%20Kit%20Set#order">Order</a>
+                <span class="price">Rs. 8,999</span>
+                <a class="link-btn" href="index.html?product=Elite%20Carbon%20Hockey%20Stick#order">Order</a>
               </div>
             </div>
           </article>
 
-          <article class="product-card">
-            <div class="product-media">
-              <img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=1200&q=80" alt="Match Hockey Balls Pack of 6" loading="lazy" />
-              <span class="product-tag">Match Ready</span>
-            </div>
-            <div class="product-body">
-              <h3>Match Hockey Balls (Pack of 6)</h3>
-              <p>Durable, smooth-rolling balls for intense training and competitive matches.</p>
-              <div class="product-meta">
-                <span class="price">Rs. 1,800</span>
-                <a class="link-btn" href="index.html?product=Match%20Hockey%20Balls%20(Pack%20of%206)#order">Order</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-media">
-              <img src="https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&w=1200&q=80" alt="Player Protective Gear" loading="lazy" />
-              <span class="product-tag">Essential</span>
-            </div>
-            <div class="product-body">
-              <h3>Player Protective Gear</h3>
-              <p>Premium shin guards, gloves, and safety essentials for on-field protection.</p>
-              <div class="product-meta">
-                <span class="price">Rs. 3,200</span>
-                <a class="link-btn" href="index.html?product=Player%20Protective%20Gear#order">Order</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-media">
-              <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1200&q=80" alt="Hockey Kit Bag" loading="lazy" />
-              <span class="product-tag">New</span>
-            </div>
-            <div class="product-body">
-              <h3>Hockey Kit Bag</h3>
-              <p>Spacious, durable bag to carry sticks, shoes, and all match-day essentials.</p>
-              <div class="product-meta">
-                <span class="price">Rs. 2,750</span>
-                <a class="link-btn" href="index.html?product=Hockey%20Kit%20Bag#order">Order</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-media">
-              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=80" alt="Hockey Turf Shoes" loading="lazy" />
-              <span class="product-tag">Performance</span>
-            </div>
-            <div class="product-body">
-              <h3>Hockey Turf Shoes</h3>
-              <p>Grip-focused turf shoes for speed, balance, and rapid directional control.</p>
-              <div class="product-meta">
-                <span class="price">Rs. 5,400</span>
-                <a class="link-btn" href="index.html?product=Hockey%20Turf%20Shoes#order">Order</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-media">
-              <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=80" alt="Training Hockey Jersey" loading="lazy" />
-              <span class="product-tag">Teamwear</span>
-            </div>
-            <div class="product-body">
-              <h3>Training Hockey Jersey</h3>
-              <p>Breathable, lightweight jersey designed for comfort during practice and play.</p>
-              <div class="product-meta">
-                <span class="price">Rs. 1,950</span>
-                <a class="link-btn" href="index.html?product=Training%20Hockey%20Jersey#order">Order</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
+          <article class="product-card" data-category="sticks">
             <div class="product-media">
               <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80&sat=-20" alt="Junior Hockey Stick" loading="lazy" />
               <span class="product-tag">Junior</span>
             </div>
             <div class="product-body">
+              <p class="product-cat">Sticks</p>
               <h3>Junior Hockey Stick</h3>
               <p>Easy-to-handle stick for young players to build skills with confidence.</p>
               <div class="product-meta">
@@ -158,12 +145,189 @@
             </div>
           </article>
 
-          <article class="product-card">
+          <article class="product-card" data-category="balls">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=1200&q=80" alt="Match Hockey Balls Pack of 6" loading="lazy" />
+              <span class="product-tag">Match Ready</span>
+            </div>
+            <div class="product-body">
+              <p class="product-cat">Balls</p>
+              <h3>Match Hockey Balls (Pack of 6)</h3>
+              <p>Durable, smooth-rolling balls for intense training and competitive matches.</p>
+              <div class="product-meta">
+                <span class="price">Rs. 1,800</span>
+                <a class="link-btn" href="index.html?product=Match%20Hockey%20Balls%20(Pack%20of%206)#order">Order</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="balls">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=1200&q=80&sat=-10" alt="Match Hockey Balls Pack of 12" loading="lazy" />
+              <span class="product-tag">Value Pack</span>
+            </div>
+            <div class="product-body">
+              <p class="product-cat">Balls</p>
+              <h3>Match Hockey Balls (Pack of 12)</h3>
+              <p>A full-season supply of match balls for clubs, schools, and training groups.</p>
+              <div class="product-meta">
+                <span class="price">Rs. 3,300</span>
+                <a class="link-btn" href="index.html?product=Match%20Hockey%20Balls%20(Pack%20of%2012)#order">Order</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="protective">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&w=1200&q=80" alt="Player Protective Gear" loading="lazy" />
+              <span class="product-tag">Essential</span>
+            </div>
+            <div class="product-body">
+              <p class="product-cat">Protective</p>
+              <h3>Player Protective Gear</h3>
+              <p>Premium shin guards, gloves, and safety essentials for on-field protection.</p>
+              <div class="product-meta">
+                <span class="price">Rs. 3,200</span>
+                <a class="link-btn" href="index.html?product=Player%20Protective%20Gear#order">Order</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="protective">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?auto=format&fit=crop&w=1200&q=80" alt="Goalkeeper Kit Set" loading="lazy" />
+              <span class="product-tag">Pro Kit</span>
+            </div>
+            <div class="product-body">
+              <p class="product-cat">Protective</p>
+              <h3>Goalkeeper Kit Set</h3>
+              <p>Complete protection set with pads, gloves, and guards for confident goalkeeping.</p>
+              <div class="product-meta">
+                <span class="price">Rs. 12,500</span>
+                <a class="link-btn" href="index.html?product=Goalkeeper%20Kit%20Set#order">Order</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="protective">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?auto=format&fit=crop&w=1200&q=80&sat=-10&crop=entropy" alt="Goalkeeper Helmet and Gloves" loading="lazy" />
+              <span class="product-tag">Pro Kit</span>
+            </div>
+            <div class="product-body">
+              <p class="product-cat">Protective</p>
+              <h3>Goalkeeper Helmet &amp; Gloves</h3>
+              <p>Impact-resistant helmet and grippy gloves for keepers who face the hardest shots.</p>
+              <div class="product-meta">
+                <span class="price">Rs. 6,750</span>
+                <a class="link-btn" href="index.html?product=Goalkeeper%20Helmet%20%26%20Gloves#order">Order</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="footwear">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=80" alt="Hockey Turf Shoes" loading="lazy" />
+              <span class="product-tag">Performance</span>
+            </div>
+            <div class="product-body">
+              <p class="product-cat">Footwear</p>
+              <h3>Hockey Turf Shoes</h3>
+              <p>Grip-focused turf shoes for speed, balance, and rapid directional control.</p>
+              <div class="product-meta">
+                <span class="price">Rs. 5,400</span>
+                <a class="link-btn" href="index.html?product=Hockey%20Turf%20Shoes#order">Order</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="footwear">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=80&sat=-10&crop=entropy" alt="Indoor Court Hockey Shoes" loading="lazy" />
+              <span class="product-tag">Indoor</span>
+            </div>
+            <div class="product-body">
+              <p class="product-cat">Footwear</p>
+              <h3>Indoor Court Hockey Shoes</h3>
+              <p>Low-profile indoor shoes with secure grip and comfort for fast court play.</p>
+              <div class="product-meta">
+                <span class="price">Rs. 6,200</span>
+                <a class="link-btn" href="index.html?product=Indoor%20Court%20Hockey%20Shoes#order">Order</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="teamwear">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=80" alt="Training Hockey Jersey" loading="lazy" />
+              <span class="product-tag">Teamwear</span>
+            </div>
+            <div class="product-body">
+              <p class="product-cat">Teamwear</p>
+              <h3>Training Hockey Jersey</h3>
+              <p>Breathable, lightweight jersey designed for comfort during practice and play.</p>
+              <div class="product-meta">
+                <span class="price">Rs. 1,950</span>
+                <a class="link-btn" href="index.html?product=Training%20Hockey%20Jersey#order">Order</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="teamwear">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=80&sat=-15&crop=entropy" alt="Team Training Bibs Set of 10" loading="lazy" />
+              <span class="product-tag">Team Pack</span>
+            </div>
+            <div class="product-body">
+              <p class="product-cat">Teamwear</p>
+              <h3>Team Training Bibs (Set of 10)</h3>
+              <p>Lightweight, breathable bibs for drills, small-sided games, and squad sessions.</p>
+              <div class="product-meta">
+                <span class="price">Rs. 4,200</span>
+                <a class="link-btn" href="index.html?product=Team%20Training%20Bibs%20(Set%20of%2010)#order">Order</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="bags">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1200&q=80" alt="Hockey Kit Bag" loading="lazy" />
+              <span class="product-tag">New</span>
+            </div>
+            <div class="product-body">
+              <p class="product-cat">Bags</p>
+              <h3>Hockey Kit Bag</h3>
+              <p>Spacious, durable bag to carry sticks, shoes, and all match-day essentials.</p>
+              <div class="product-meta">
+                <span class="price">Rs. 2,750</span>
+                <a class="link-btn" href="index.html?product=Hockey%20Kit%20Bag#order">Order</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="bags">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1200&q=80&crop=entropy" alt="Pro Wheeled Kit Bag" loading="lazy" />
+              <span class="product-tag">Premium</span>
+            </div>
+            <div class="product-body">
+              <p class="product-cat">Bags</p>
+              <h3>Pro Wheeled Kit Bag</h3>
+              <p>Heavy-duty wheeled bag with separate stick storage for travel and tournaments.</p>
+              <div class="product-meta">
+                <span class="price">Rs. 5,900</span>
+                <a class="link-btn" href="index.html?product=Pro%20Wheeled%20Kit%20Bag#order">Order</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="training">
             <div class="product-media">
               <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=1200&q=80" alt="Pro Training Cones Set" loading="lazy" />
               <span class="product-tag">Training</span>
             </div>
             <div class="product-body">
+              <p class="product-cat">Training</p>
               <h3>Pro Training Cones Set</h3>
               <p>Durable marker cones for drills, agility training, and practice sessions.</p>
               <div class="product-meta">
@@ -172,6 +336,52 @@
               </div>
             </div>
           </article>
+
+          <article class="product-card" data-category="training">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=1200&q=80&sat=-10&crop=entropy" alt="Agility Ladder and Marker Set" loading="lazy" />
+              <span class="product-tag">Training</span>
+            </div>
+            <div class="product-body">
+              <p class="product-cat">Training</p>
+              <h3>Agility Ladder &amp; Marker Set</h3>
+              <p>Everything you need for footwork, speed, and coordination sessions at home or club.</p>
+              <div class="product-meta">
+                <span class="price">Rs. 2,400</span>
+                <a class="link-btn" href="index.html?product=Agility%20Ladder%20%26%20Marker%20Set#order">Order</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="accessories">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&w=1200&q=80&crop=entropy" alt="Premium Stick Grip and Tape Kit" loading="lazy" />
+              <span class="product-tag">Essentials</span>
+            </div>
+            <div class="product-body">
+              <p class="product-cat">Accessories</p>
+              <h3>Premium Stick Grip &amp; Tape Kit</h3>
+              <p>Fresh grips and durable tape to keep your stick comfortable and match-ready.</p>
+              <div class="product-meta">
+                <span class="price">Rs. 950</span>
+                <a class="link-btn" href="index.html?product=Premium%20Stick%20Grip%20%26%20Tape%20Kit#order">Order</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt shop-help">
+      <div class="container shop-help-inner">
+        <div>
+          <p class="eyebrow">Need a Hand?</p>
+          <h2>Not Sure Which Gear Fits Your Game?</h2>
+          <p>Tell us your position, height, and budget. We will recommend the right setup and explain every option before you order.</p>
+        </div>
+        <div class="shop-help-actions">
+          <a class="btn" href="about.html#contact">Talk to Our Team</a>
+          <a class="btn btn-outline" href="index.html#order">Place an Order</a>
         </div>
       </div>
     </section>
@@ -190,5 +400,8 @@
       <p>© 2026 HockeyPro Store. All rights reserved.</p>
     </div>
   </footer>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

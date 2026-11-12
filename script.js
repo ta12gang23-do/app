@@ -33,6 +33,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  const filterChips = document.querySelectorAll("[data-filter]");
+  const productCards = Array.from(document.querySelectorAll("[data-category]"));
+  const productCount = document.getElementById("product-count");
+
+  if (filterChips.length && productCards.length) {
+    filterChips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        filterChips.forEach((c) => c.classList.remove("is-active"));
+        chip.classList.add("is-active");
+
+        const filter = chip.getAttribute("data-filter");
+        let visible = 0;
+
+        productCards.forEach((card) => {
+          const show = filter === "all" || card.getAttribute("data-category") === filter;
+          card.classList.toggle("is-hidden", !show);
+          if (show) visible += 1;
+        });
+
+        if (productCount) {
+          productCount.textContent = `${visible} product${visible === 1 ? "" : "s"}`;
+        }
+      });
+    });
+  }
+
   form?.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = new FormData(form);
