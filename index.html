@@ -4,13 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HockeyPro Store | Premium Hockey Gear</title>
-  <meta name="description" content="Shop premium hockey sticks, balls, protective gear, and accessories. Order your hockey equipment today." />
+  <meta name="description" content="Shop 17 premium hockey sticks, balls, protective gear, shoes, bags, and training equipment at HockeyPro Store. Order your hockey gear today." />
+  <link rel="canonical" href="https://app-seven-orpin-24.vercel.app/" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="home-page">
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="index.html">Hockey<span>Pro</span></a>
@@ -31,7 +32,7 @@
       <div class="container hero-simple">
         <p class="eyebrow">Premium Hockey Collection</p>
         <h1>Elite Hockey Gear for <span class="accent">Champions</span></h1>
-        <p class="lead">Premium hockey equipment for every player. Explore our products and place your order with confidence.</p>
+        <p class="lead">17 premium products for every player — from your first stick to a full team setup. Explore the collection and order with confidence.</p>
         <div class="hero-actions">
           <a class="btn" href="products.html">Explore Collection</a>
           <a class="btn btn-outline" href="#order">Place Order</a>
@@ -39,13 +40,45 @@
       </div>
     </section>
 
+    <section class="shop-trust">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <span class="trust-icon">🚚</span>
+          <div>
+            <strong>Fast Delivery</strong>
+            <small>Nationwide dispatch</small>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">✅</span>
+          <div>
+            <strong>Quality Checked</strong>
+            <small>Every order inspected</small>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">💬</span>
+          <div>
+            <strong>Real Support</strong>
+            <small>Advice from players</small>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">🏆</span>
+          <div>
+            <strong>Trusted Gear</strong>
+            <small>For teams &amp; academies</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="products" class="section">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Our Products</p>
-          <h2>Premium Hockey Gear</h2>
-          <p>Explore our best-selling hockey equipment. Select any product to add it directly to your order.</p>
-          <p style="margin-top:1rem;"><a class="btn btn-outline" href="products.html">View All Products</a></p>
+          <p class="eyebrow">Featured Gear</p>
+          <h2>Hand-Picked for Match Day</h2>
+          <p>Our best-selling hockey equipment, chosen for performance, durability, and value. Select any product to start your order.</p>
         </div>
         <div class="product-grid">
           <article class="product-card">
@@ -54,6 +87,7 @@
               <span class="product-tag">Bestseller</span>
             </div>
             <div class="product-body">
+              <p class="product-cat">Sticks</p>
               <h3>Pro Carbon Hockey Stick</h3>
               <p>High-performance carbon composite stick built for speed, precision, and powerful striking.</p>
               <div class="product-meta">
@@ -68,6 +102,7 @@
               <span class="product-tag">Pro Kit</span>
             </div>
             <div class="product-body">
+              <p class="product-cat">Protective</p>
               <h3>Goalkeeper Kit Set</h3>
               <p>Complete elite protection set with pads, gloves, and guards for confident goalkeeping.</p>
               <div class="product-meta">
@@ -82,6 +117,7 @@
               <span class="product-tag">Match Ready</span>
             </div>
             <div class="product-body">
+              <p class="product-cat">Balls</p>
               <h3>Match Hockey Balls (Pack of 6)</h3>
               <p>Durable, smooth-rolling balls designed for intense training and competitive matches.</p>
               <div class="product-meta">
@@ -96,6 +132,7 @@
               <span class="product-tag">Essential</span>
             </div>
             <div class="product-body">
+              <p class="product-cat">Protective</p>
               <h3>Player Protective Gear</h3>
               <p>Premium shin guards, gloves, and safety essentials for reliable on-field protection.</p>
               <div class="product-meta">
@@ -110,6 +147,7 @@
               <span class="product-tag">New</span>
             </div>
             <div class="product-body">
+              <p class="product-cat">Bags</p>
               <h3>Hockey Kit Bag</h3>
               <p>Spacious, durable premium bag to carry sticks, shoes, and all match-day essentials.</p>
               <div class="product-meta">
@@ -124,6 +162,7 @@
               <span class="product-tag">Performance</span>
             </div>
             <div class="product-body">
+              <p class="product-cat">Footwear</p>
               <h3>Hockey Turf Shoes</h3>
               <p>Grip-focused turf shoes engineered for speed, balance, and rapid directional control.</p>
               <div class="product-meta">
@@ -133,6 +172,7 @@
             </div>
           </article>
         </div>
+        <p class="section-cta"><a class="btn btn-outline" href="products.html">View All 17 Products</a></p>
       </div>
     </section>
 
@@ -156,7 +196,7 @@
           </div>
           <div class="feature">
             <div class="feature-icon">🚚</div>
-            <h3>Fast & Easy Ordering</h3>
+            <h3>Fast &amp; Easy Ordering</h3>
             <p>Select your gear, submit your details, and get quick confirmation with reliable delivery.</p>
           </div>
         </div>
@@ -174,8 +214,16 @@
             <li>Delivery available for teams and individuals</li>
             <li>Bulk inquiries welcome</li>
           </ul>
+          <p class="order-contact">Prefer to talk it through? <a href="about.html#contact">Contact our team →</a></p>
         </div>
         <form id="order-form" class="order-form">
+          <div class="order-form-head">
+            <span class="order-form-icon">🛒</span>
+            <div>
+              <h3>Quick Order Form</h3>
+              <p>We reply within one business day.</p>
+            </div>
+          </div>
           <label>
             Full Name
             <input type="text" name="name" placeholder="Your name" required />
@@ -216,6 +264,7 @@
             <textarea name="notes" rows="4" placeholder="City, address, or any details"></textarea>
           </label>
           <button type="submit" class="btn btn-block">Submit Order Request</button>
+          <p class="form-note">🔒 No online payment required — we confirm availability and delivery with you first.</p>
           <p id="form-status" class="form-status" aria-live="polite"></p>
         </form>
       </div>
