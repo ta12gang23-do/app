@@ -99,19 +99,19 @@
                 <div class="field-grid">
                   <label>
                     Full Name
-                    <input type="text" name="name" placeholder="Your name" required />
+                    <input type="text" name="name" placeholder="Your name" autocomplete="name" required />
                   </label>
                   <label>
                     Phone / WhatsApp
-                    <input type="tel" name="phone" placeholder="03xx-xxxxxxx" required />
+                    <input type="tel" name="phone" placeholder="03xx-xxxxxxx" autocomplete="tel" inputmode="tel" required />
                   </label>
                   <label>
                     Email (optional)
-                    <input type="email" name="email" placeholder="you@example.com" />
+                    <input type="email" name="email" placeholder="you@example.com" autocomplete="email" />
                   </label>
                   <label>
                     City
-                    <input type="text" name="city" placeholder="Your city" required />
+                    <input type="text" name="city" placeholder="Your city" autocomplete="address-level2" required />
                   </label>
                 </div>
               </div>
@@ -170,7 +170,7 @@
                 <div class="field-grid">
                   <label class="span-2">
                     Delivery Address
-                    <textarea name="address" rows="3" placeholder="House / street, area, city" required></textarea>
+                    <textarea name="address" rows="3" placeholder="House / street, area, city" autocomplete="street-address" required></textarea>
                   </label>
                   <label class="span-2">
                     Order Notes (optional)
@@ -255,7 +255,7 @@
                   <span>Total</span>
                   <span id="summary-total">Rs. 0</span>
                 </div>
-                <button type="submit" class="btn btn-block">Submit Order Request</button>
+                <button type="submit" class="btn btn-block" id="order-submit">Submit Order Request</button>
                 <p class="summary-note">You will not be charged now. We confirm every order personally.</p>
                 <p id="form-status" class="form-status" aria-live="polite"></p>
               </div>
