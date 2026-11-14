@@ -12,6 +12,37 @@ document.addEventListener("DOMContentLoaded", () => {
     supabaseReady: Boolean(appConfig.supabaseUrl && appConfig.supabaseKey),
   };
 
+  const navToggle = document.querySelector(".nav-toggle");
+  const navMenu = document.getElementById("site-menu");
+
+  if (navToggle && navMenu) {
+    const closeNav = () => {
+      navMenu.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", "Open menu");
+    };
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = navMenu.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+      navToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    });
+
+    navMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeNav));
+
+    document.addEventListener("click", (event) => {
+      if (navMenu.classList.contains("is-open") && !event.target.closest(".nav")) closeNav();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeNav();
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 640) closeNav();
+    });
+  }
+
   const WHATSAPP_NUMBER = "923001234567";
   const STORE_EMAIL = "hello@hockeyprostore.com";
   const FREE_DELIVERY_MIN = 10000;
@@ -120,33 +151,14 @@ document.addEventListener("DOMContentLoaded", () => {
     return lines.join("\n");
   };
 
-  const saveOrder = async (order) => {
+  const insertRow = async (table, payload) => {
     if (!window.app.supabaseReady) return false;
-
-    const payload = {
-      reference: order.reference,
-      name: order.name,
-      phone: order.phone,
-      email: order.email || null,
-      city: order.city,
-      address: order.address,
-      product: order.product,
-      quantity: order.quantity,
-      size: order.size || null,
-      notes: order.notes || null,
-      delivery_method: order.delivery,
-      delivery_fee: order.deliveryFee,
-      payment_method: order.payment,
-      unit_price: order.unit,
-      total: order.total,
-      status: "new",
-    };
 
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 8000);
 
     try {
-      const response = await fetch(`${appConfig.supabaseUrl}/rest/v1/orders`, {
+      const response = await fetch(`${appConfig.supabaseUrl}/rest/v1/${table}`, {
         method: "POST",
         headers: {
           apikey: appConfig.supabaseKey,
@@ -164,6 +176,36 @@ document.addEventListener("DOMContentLoaded", () => {
       clearTimeout(timer);
     }
   };
+
+  const saveOrder = (order) =>
+    insertRow("orders", {
+      reference: order.reference,
+      name: order.name,
+      phone: order.phone,
+      email: order.email || null,
+      city: order.city,
+      address: order.address,
+      product: order.product,
+      quantity: order.quantity,
+      size: order.size || null,
+      notes: order.notes || null,
+      delivery_method: order.delivery,
+      delivery_fee: order.deliveryFee,
+      payment_method: order.payment,
+      unit_price: order.unit,
+      total: order.total,
+      status: "new",
+    });
+
+  const saveContact = (message) =>
+    insertRow("contact_messages", {
+      name: message.name,
+      email: message.email,
+      phone: message.phone || null,
+      topic: message.topic,
+      message: message.message,
+      status: "new",
+    });
 
   const showOrderSuccess = (order, saved) => {
     if (!form) return;
@@ -357,6 +399,136 @@ document.addEventListener("DOMContentLoaded", () => {
       if (status) status.textContent = "";
 
       showOrderSuccess(order, saved);
+    });
+  }
+
+  const contactForm = document.getElementById("contact-form");
+
+  if (contactForm) {
+    const contactStatus = document.getElementById("contact-status");
+    const contactSubmit = document.getElementById("contact-submit");
+    const contactName = contactForm.querySelector('input[name="name"]');
+    const contactEmail = contactForm.querySelector('input[name="email"]');
+    const contactPhone = contactForm.querySelector('input[name="phone"]');
+    const contactMessage = contactForm.querySelector('textarea[name="message"]');
+
+    const clearValidity = (input) => input?.addEventListener("input", () => input.setCustomValidity(""));
+    clearValidity(contactPhone);
+    clearValidity(contactMessage);
+
+    const showContactSuccess = (message, saved) => {
+      const text = [
+        "Hi HockeyPro Store! I sent a message through your contact page.",
+        "",
+        `Name: ${message.name}`,
+        `Email: ${message.email}`,
+        message.phone ? `Phone: ${message.phone}` : null,
+        `Topic: ${message.topic}`,
+        "",
+        message.message,
+      ]
+        .filter((line) => line !== null)
+        .join("\n");
+
+      const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+      const mailLink = `mailto:${STORE_EMAIL}?subject=${encodeURIComponent(`Contact: ${message.topic}`)}&body=${encodeURIComponent(text)}`;
+      const firstName = message.name.split(/\s+/)[0] || "there";
+      const rows = [
+        ["Topic", message.topic],
+        ["Reply to", message.email],
+        message.phone ? ["Phone", message.phone] : null,
+      ]
+        .filter(Boolean)
+        .map(([label, val]) => `<div class="success-row"><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(val)}</dd></div>`)
+        .join("");
+
+      const panel = document.getElementById("contact-panel");
+      const card = contactForm.closest(".contact-form-card");
+      if (!panel || !card) return;
+
+      panel.insertAdjacentHTML(
+        "beforeend",
+        `<div class="order-success contact-success" role="status" aria-live="polite">
+          <span class="success-icon" aria-hidden="true">✓</span>
+          <p class="eyebrow">Message Ready</p>
+          <h2>Thanks, ${escapeHtml(firstName)}!</h2>
+          <p class="success-lead">
+            ${saved
+              ? `Your message is with our team. We'll reply to <strong>${escapeHtml(message.email)}</strong> within one working day.`
+              : "One last step — send your message on WhatsApp or email so it reaches our team right away. We'll reply within one working day."}
+          </p>
+          <dl class="success-details">${rows}</dl>
+          <div class="success-actions">
+            <a class="btn" href="${whatsappLink}" target="_blank" rel="noopener">Send on WhatsApp</a>
+            <a class="btn btn-outline" href="${mailLink}">Email Instead</a>
+          </div>
+          <button type="button" class="success-reset" id="contact-reset">Send another message</button>
+        </div>`
+      );
+
+      card.hidden = true;
+      const success = panel.querySelector(".contact-success");
+
+      if (!saved) {
+        window.open(whatsappLink, "_blank", "noopener");
+      }
+
+      success.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      document.getElementById("contact-reset").addEventListener("click", () => {
+        success.remove();
+        card.hidden = false;
+        contactForm.reset();
+        if (contactStatus) contactStatus.textContent = "";
+        contactName?.focus();
+        card.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    };
+
+    contactForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (contactPhone && contactPhone.value.trim()) {
+        const digits = (contactPhone.value.match(/\d/g) || []).length;
+        if (digits < 7) {
+          contactPhone.setCustomValidity("Please enter a valid phone number with at least 7 digits, or leave it empty.");
+          contactPhone.reportValidity();
+          return;
+        }
+        contactPhone.setCustomValidity("");
+      }
+
+      if (contactMessage && contactMessage.value.trim().length < 10) {
+        contactMessage.setCustomValidity("Please add a little more detail (at least 10 characters).");
+        contactMessage.reportValidity();
+        return;
+      }
+      contactMessage?.setCustomValidity("");
+
+      const data = new FormData(contactForm);
+      const message = {
+        name: (data.get("name") || "").toString().trim(),
+        email: (data.get("email") || "").toString().trim(),
+        phone: (data.get("phone") || "").toString().trim(),
+        topic: (data.get("topic") || "").toString().trim(),
+        message: (data.get("message") || "").toString().trim(),
+      };
+
+      if (contactSubmit) {
+        contactSubmit.disabled = true;
+        contactSubmit.textContent = "Sending…";
+      }
+      if (contactStatus) contactStatus.textContent = "Sending your message…";
+
+      const saved = await saveContact(message);
+
+      if (contactSubmit) {
+        contactSubmit.disabled = false;
+        contactSubmit.textContent = "Send Message";
+      }
+      if (contactStatus) contactStatus.textContent = "";
+
+      showContactSuccess(message, saved);
     });
   }
 });
